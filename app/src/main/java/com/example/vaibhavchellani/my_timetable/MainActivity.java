@@ -1,5 +1,6 @@
 package com.example.vaibhavchellani.my_timetable;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -27,13 +28,19 @@ public class MainActivity extends AppCompatActivity {
 
         db = new AttedanceDB(this);
         db.addrow_check_class();
-        String dbstring = db.databaseToString();
+        String dbstring = db.getTableAsString(AttedanceDB.TABLE_CHECK_CLASS);
         textView = (TextView) findViewById(R.id.newText);
         textView.setText(dbstring);
+        Toast.makeText(this, "no of coumns are "+ db.numberOfColumns(AttedanceDB.TABLE_CHECK_CLASS), Toast.LENGTH_LONG).show();
 
-}
-    public void deleteDatabase() {
+    }
+
+    public void deleteDatabase(View view ) {
+        Toast.makeText(this, "we are inside delete", Toast.LENGTH_SHORT).show();
         db.deleteTable(AttedanceDB.TABLE_CHECK_CLASS);
+        String dbstring = db.getTableAsString(AttedanceDB.TABLE_CHECK_CLASS);
+        textView = (TextView) findViewById(R.id.newText);
+        textView.setText(dbstring);
     }
 }
         /*textView=(TextView)findViewById(R.id.select_year_textview);

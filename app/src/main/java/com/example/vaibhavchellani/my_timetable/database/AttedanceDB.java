@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
+
+import com.example.vaibhavchellani.my_timetable.MainActivity;
 
 /**
  * Created by vaibhavchellani on 1/17/17.
@@ -14,21 +17,21 @@ import android.util.Log;
 public class AttedanceDB extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "attendanceDB.db";
-    private static final int DATABASE_VERSION=1;
+    private static final int DATABASE_VERSION=7and;
     ContentValues values=new ContentValues();
 
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_DAY="DAY";
-    public static final String COLUMN_LECTURE1="10:30 AM";
-    public static final String COLUMN_LECTURE2="11:25 AM";
-    public static final String COLUMN_LECTURE3="12:20 PM";
-    public static final String COLUMN_LECTURE4="12:50 PM";
-    public static final String COLUMN_LECTURE5="1:45 PM";
-    public static final String COLUMN_LECTURE6="2:40 AM";
-    public static final String COLUMN_LECTURE7="3:35 AM";
-    public static final String COLUMN_LECTURE8="4:30 AM";
-    public static final String COLUMN_LECTURE9="4:40 AM";
-    public static final String COLUMN_LECTURE10="5:35 AM";
+    public static final String COLUMN_LECTURE1="Ten_thirty";
+    public static final String COLUMN_LECTURE2="Eleven_twentyfive";
+    public static final String COLUMN_LECTURE3="Twelve_twenty";
+    public static final String COLUMN_LECTURE4="Twelve_fifty";
+    public static final String COLUMN_LECTURE5="One_fourtyfive";
+    public static final String COLUMN_LECTURE6="Two_forty";
+    public static final String COLUMN_LECTURE7="Three_thirtyfive";
+    public static final String COLUMN_LECTURE8="Four_thirty";
+    public static final String COLUMN_LECTURE9="Four_forty";
+    public static final String COLUMN_LECTURE10="Five_thirtyfive";
 
 
     public static final String TABLE_CHECK_CLASS = "check_class";
@@ -41,19 +44,19 @@ public class AttedanceDB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        final String SQL_CREATE_STRING="CREATE TABLE " + TABLE_CHECK_CLASS + "("
+        final String SQL_CREATE_STRING="CREATE TABLE " + TABLE_CHECK_CLASS + " ( "
                 +COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 +COLUMN_DAY + " TEXT, "
-                +COLUMN_LECTURE1 +" TEXT, "
-                +COLUMN_LECTURE2 +" TEXT, "
-                +COLUMN_LECTURE3 + " TEXT, "
-                +COLUMN_LECTURE4 +  " TEXT, "
-                +COLUMN_LECTURE5 + " TEXT, "
-                +COLUMN_LECTURE6 + " TEXT, "
-                +COLUMN_LECTURE7 + " TEXT, "
-                +COLUMN_LECTURE8 + " TEXT, "
-                +COLUMN_LECTURE9 + " TEXT, "
-                +COLUMN_LECTURE10 + " TEXT "
+                +COLUMN_LECTURE1 + " BOOLEAN, "
+                +COLUMN_LECTURE2 +" BOOLEAN, "
+                +COLUMN_LECTURE3 + " BOOLEAN, "
+                +COLUMN_LECTURE4 + " BOOLEAN, "
+                +COLUMN_LECTURE5 + " BOOLEAN, "
+                +COLUMN_LECTURE6 + " BOOLEAN, "
+                +COLUMN_LECTURE7 + " BOOLEAN, "
+                +COLUMN_LECTURE8 + " BOOLEAN, "
+                +COLUMN_LECTURE9 + " BOOLEAN, "
+                +COLUMN_LECTURE10 + " BOOLEAN "
                 + ");";
         Log.d(" ", "QUERY IS "+ SQL_CREATE_STRING);
         sqLiteDatabase.execSQL(SQL_CREATE_STRING);
@@ -109,8 +112,8 @@ public class AttedanceDB extends SQLiteOpenHelper {
         //Position after the last row means the end of the results
         while (!recordSet.isAfterLast()) {
             // null could happen if we used our empty constructor
-            if (recordSet.getString(recordSet.getColumnIndex(COLUMN_DAY)) != null) {
-                dbString += recordSet.getString(recordSet.getColumnIndex(COLUMN_DAY));
+            if (recordSet.getString(recordSet.getColumnIndex(COLUMN_LECTURE1)) != null) {
+                dbString += recordSet.getString(recordSet.getColumnIndex(COLUMN_LECTURE1));
                 dbString += "\n";
             }
             recordSet.moveToNext();
@@ -119,7 +122,7 @@ public class AttedanceDB extends SQLiteOpenHelper {
         return dbString;
     }
 
-    /*public String getTableAsString(String tableName) {
+    public String getTableAsString(String tableName) {
         SQLiteDatabase db=getWritableDatabase();
         String TAG=TABLE_CHECK_CLASS;
         Log.d(TAG, "getTableAsString called");
@@ -137,7 +140,7 @@ public class AttedanceDB extends SQLiteOpenHelper {
             } while (allRows.moveToNext());
         }
         return tableString;
-    }*/
+    }
     public void deleteTable(String TABLE_NAME){
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_NAME +  " WHERE 1 ");
@@ -159,6 +162,23 @@ public class AttedanceDB extends SQLiteOpenHelper {
         values.put(COLUMN_LECTURE8,"blah 8");
         values.put(COLUMN_LECTURE9,"blah 9");
         values.put(COLUMN_LECTURE10,"blah 10");
+    }
+
+    public int numberOfColumns(String tableName) {
+        int result = 0;
+        SQLiteDatabase db=getWritableDatabase();
+        Cursor cursor = null;
+        try {
+            cursor = db.query(tableName, null, null, null, null, null, null);
+            result = cursor.getColumnCount();
+            if (result < 0) {
+                result = 0;
+            }
+        } finally {
+            if (cursor != null)
+                cursor.close();
+        }
+        return result;
     }
     /*
     public class TestProjectActivity extends Activity {
