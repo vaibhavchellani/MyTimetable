@@ -16,9 +16,11 @@ import com.example.vaibhavchellani.my_timetable.database.AttedanceDB;
 
 public class MainActivity extends AppCompatActivity {
     private Spinner spinner_year,spinner_branch,spinner_shift;
-    NotificationCompat.Builder notification;
+
+    private TextView textview;
 
     private static final int uniqueID = 45612;
+
     private TextView textView_year,textView_branch,textView_shift;
     AttedanceDB db;
 
@@ -29,12 +31,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.trial);
 
         db = new AttedanceDB(this);
         db.addrow_check_class();
+        db.make_attendance_table();
 
-        textView_year=(TextView)findViewById(R.id.select_year_textview);
+
+
+        /*textView_year=(TextView)findViewById(R.id.select_year_textview);
         textView_branch=(TextView)findViewById(R.id.select_branch_textview);
         textView_shift=(TextView)findViewById(R.id.select_shift_textview);
 
@@ -110,25 +115,24 @@ public class MainActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) {
                 //do nothing
             }
-        });
+        });*/
     }
 
     public void deleteDatabase(View view) {
         Toast.makeText(this, "we are inside delete", Toast.LENGTH_SHORT).show();
-        TextView textView=(TextView) findViewById(R.id.newText);
+
         db.deleteTable(AttedanceDB.TABLE_CHECK_CLASS);
         String dbstring = db.getTableAsString(AttedanceDB.TABLE_CHECK_CLASS);
-        textView = (TextView) findViewById(R.id.newText);
-        textView.setText(dbstring);
+        textview = (TextView) findViewById(R.id.newText);
+        textview.setText(dbstring);
     }
 
     public void viewDatabase(View view) {
         Toast.makeText(this, "we are inside view", Toast.LENGTH_SHORT).show();
-        TextView textView=(TextView)findViewById(R.id.newText);
+        textview=(TextView)findViewById(R.id.newText);
 
-        String dbstring = db.getTableAsString(AttedanceDB.TABLE_CHECK_CLASS);
-        textView = (TextView) findViewById(R.id.newText);
-        textView.setText(dbstring);
+        String dbstring = db.getTableAsString(AttedanceDB.TABLE_ATTENDANCE);
+        textview.setText(dbstring);
         Toast.makeText(this, "no of coumns are " + db.numberOfColumns(AttedanceDB.TABLE_CHECK_CLASS), Toast.LENGTH_LONG).show();
 
     }

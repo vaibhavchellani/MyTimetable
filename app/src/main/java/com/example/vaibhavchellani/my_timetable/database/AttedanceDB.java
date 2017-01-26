@@ -17,7 +17,7 @@ import com.example.vaibhavchellani.my_timetable.MainActivity;
 public class AttedanceDB extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "attendanceDB.db";
-    private static final int DATABASE_VERSION=8;
+    private static final int DATABASE_VERSION=9;
     ContentValues values=new ContentValues();
 
     public static final String COLUMN_ID = "_id";
@@ -33,9 +33,14 @@ public class AttedanceDB extends SQLiteOpenHelper {
     public static final String COLUMN_LECTURE9="Four_forty";
     public static final String COLUMN_LECTURE10="Five_thirtyfive";
 
+    public static final String COLUMN_SUBJECT="SUBJECTS";
+    public static final String COLUMN_PRESENT_COUNTER="PRESENT";
+    public static final String COLUMN_ABSENT_COUNTER="ABSENT";
+    public static final String COLUMN_NO_CLASS="NO_LECTURE";
+
 
     public static final String TABLE_CHECK_CLASS = "check_class";
-    public static final String TABLE_CLASS_DETAIL = "class_detail";
+    public static final String TABLE_ATTENDANCE = "attendance";
 
     public AttedanceDB(Context context){
 
@@ -44,7 +49,7 @@ public class AttedanceDB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        final String SQL_CREATE_STRING="CREATE TABLE " + TABLE_CHECK_CLASS + " ( "
+        final String SQL_CREATE_STRING="CREATE TABLE IF NOT EXISTS " + TABLE_CHECK_CLASS + " ( "
                 +COLUMN_ID + " INTEGER, "
                 +COLUMN_DAY + " TEXT, "
                 +COLUMN_LECTURE1 + " TEXT, "
@@ -61,6 +66,14 @@ public class AttedanceDB extends SQLiteOpenHelper {
         Log.d(" ", "QUERY IS "+ SQL_CREATE_STRING);
         sqLiteDatabase.execSQL(SQL_CREATE_STRING);
 
+        final String SQL_CREATE_ATTENDANCE="CREATE TABLE IF NOT EXISTS "+ TABLE_ATTENDANCE + " ( "
+                +COLUMN_ID + " INTEGER, "
+                +COLUMN_SUBJECT + " TEXT, "
+                +COLUMN_PRESENT_COUNTER + " INTEGER DEFAULT 0 , "
+                +COLUMN_ABSENT_COUNTER + " INTEGER DEFAULT 0 , "
+                +COLUMN_NO_CLASS + " INTEGER DEFAULT 0 "
+                + ");";
+        sqLiteDatabase.execSQL(SQL_CREATE_ATTENDANCE);
 
     }
 
@@ -68,7 +81,31 @@ public class AttedanceDB extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+ TABLE_CHECK_CLASS);
         onCreate(sqLiteDatabase);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+ TABLE_ATTENDANCE);
+        onCreate(sqLiteDatabase);
+    }
 
+    public void make_attendance_table(){
+        SQLiteDatabase db=getWritableDatabase();
+        values.put(COLUMN_ID,1);
+        values.put(COLUMN_SUBJECT,"CS");
+        db.insert(TABLE_ATTENDANCE,null,values);
+        values.put(COLUMN_ID,2);
+        values.put(COLUMN_SUBJECT,"AM");
+        db.insert(TABLE_ATTENDANCE,null,values);
+        values.put(COLUMN_ID,3);
+        values.put(COLUMN_SUBJECT,"TOC");
+        db.insert(TABLE_ATTENDANCE,null,values);
+        values.put(COLUMN_ID,4);
+        values.put(COLUMN_SUBJECT,"COA");
+        db.insert(TABLE_ATTENDANCE,null,values);
+        values.put(COLUMN_ID,5);
+        values.put(COLUMN_SUBJECT,"DBMS");
+        db.insert(TABLE_ATTENDANCE,null,values);
+        values.put(COLUMN_ID,6);
+        values.put(COLUMN_SUBJECT,"OOPS");
+        db.insert(TABLE_ATTENDANCE,null,values);
+        db.close();
     }
     public void addrow_check_class(){
         SQLiteDatabase db=getWritableDatabase();
@@ -134,23 +171,6 @@ public class AttedanceDB extends SQLiteOpenHelper {
         db.execSQL("DELETE FROM " + TABLE_NAME +  " WHERE 1 ");
     }
 
-    public void makeDatabase_one(){
-        values.put(COLUMN_DAY,"MONDAY");
-        values.put(COLUMN_DAY,"TUESDAY");
-        values.put(COLUMN_DAY,"WEDNESDAY");
-        values.put(COLUMN_DAY,"THURSDAY");
-        values.put(COLUMN_DAY,"FRIDAY");
-        values.put(COLUMN_LECTURE1,"blah 1");
-        values.put(COLUMN_LECTURE2,"blah 2");
-        values.put(COLUMN_LECTURE3,"blah 3");
-        values.put(COLUMN_LECTURE4,"blah 4");
-        values.put(COLUMN_LECTURE5,"blah 5");
-        values.put(COLUMN_LECTURE6,"blah 6");
-        values.put(COLUMN_LECTURE7,"blah 7");
-        values.put(COLUMN_LECTURE8,"blah 8");
-        values.put(COLUMN_LECTURE9,"blah 9");
-        values.put(COLUMN_LECTURE10,"blah 10");
-    }
 
     public int numberOfColumns(String tableName) {
         int result = 0;
