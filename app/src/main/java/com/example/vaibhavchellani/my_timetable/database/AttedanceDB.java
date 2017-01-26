@@ -17,7 +17,7 @@ import com.example.vaibhavchellani.my_timetable.MainActivity;
 public class AttedanceDB extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "attendanceDB.db";
-    private static final int DATABASE_VERSION=7and;
+    private static final int DATABASE_VERSION=8;
     ContentValues values=new ContentValues();
 
     public static final String COLUMN_ID = "_id";
@@ -45,18 +45,18 @@ public class AttedanceDB extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         final String SQL_CREATE_STRING="CREATE TABLE " + TABLE_CHECK_CLASS + " ( "
-                +COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                +COLUMN_ID + " INTEGER, "
                 +COLUMN_DAY + " TEXT, "
-                +COLUMN_LECTURE1 + " BOOLEAN, "
-                +COLUMN_LECTURE2 +" BOOLEAN, "
-                +COLUMN_LECTURE3 + " BOOLEAN, "
-                +COLUMN_LECTURE4 + " BOOLEAN, "
-                +COLUMN_LECTURE5 + " BOOLEAN, "
-                +COLUMN_LECTURE6 + " BOOLEAN, "
-                +COLUMN_LECTURE7 + " BOOLEAN, "
-                +COLUMN_LECTURE8 + " BOOLEAN, "
-                +COLUMN_LECTURE9 + " BOOLEAN, "
-                +COLUMN_LECTURE10 + " BOOLEAN "
+                +COLUMN_LECTURE1 + " TEXT, "
+                +COLUMN_LECTURE2 +" TEXT, "
+                +COLUMN_LECTURE3 + " TEXT, "
+                +COLUMN_LECTURE4 + " TEXT, "
+                +COLUMN_LECTURE5 + " TEXT, "
+                +COLUMN_LECTURE6 + " TEXT, "
+                +COLUMN_LECTURE7 + " TEXT, "
+                +COLUMN_LECTURE8 + " TEXT, "
+                +COLUMN_LECTURE9 + " TEXT, "
+                +COLUMN_LECTURE10 + " TEXT "
                 + ");";
         Log.d(" ", "QUERY IS "+ SQL_CREATE_STRING);
         sqLiteDatabase.execSQL(SQL_CREATE_STRING);
@@ -72,28 +72,16 @@ public class AttedanceDB extends SQLiteOpenHelper {
     }
     public void addrow_check_class(){
         SQLiteDatabase db=getWritableDatabase();
-        values.put(COLUMN_DAY,"MONDAY");
-        values.put(COLUMN_LECTURE1,"blah 1");
-        db.insert(TABLE_CHECK_CLASS,null,values);
-        values.put(COLUMN_DAY,"TUESDAY");
-        db.insert(TABLE_CHECK_CLASS,null,values);
-        values.put(COLUMN_DAY,"WEDNESDAY");
-        db.insert(TABLE_CHECK_CLASS,null,values);
-        values.put(COLUMN_DAY,"THURSDAY");
-        db.insert(TABLE_CHECK_CLASS,null,values);
-
-        /*  values.put(COLUMN_DAY,"FRIDAY");
-        values.put(COLUMN_LECTURE1,"blah 1");
-        values.put(COLUMN_LECTURE2,"blah 2");
-        values.put(COLUMN_LECTURE3,"blah 3");
-        values.put(COLUMN_LECTURE4,"blah 4");
-        values.put(COLUMN_LECTURE5,"blah 5");
-        values.put(COLUMN_LECTURE6,"blah 6");
-        values.put(COLUMN_LECTURE7,"blah 7");
-        values.put(COLUMN_LECTURE8,"blah 8");
-        values.put(COLUMN_LECTURE9,"blah 9");
-        values.put(COLUMN_LECTURE10,"blah 10");*/
-
+        String ROW1 = "INSERT INTO " + TABLE_CHECK_CLASS + " Values (1,'MONDAY','AM(P1)/C304 COA(P2)/A107 DBMS(P3)/A102','AM(P1)/C304 COA(P2)/A107 DBMS(P3)/A102','BREAK','OOPS(L) / C301','DBMS/B204','AM(L)/C204','TOC(L)/C204','BREAK','DBMS(P1)/A102 AM(P2)/C304 COA(P3)/A107','DBMS(P1)/A102 AM(P2)/C304 COA(P3)/A107')";
+        db.execSQL(ROW1);
+        ROW1 = "INSERT INTO " + TABLE_CHECK_CLASS + " Values (2,'TUESDAY','AM(T1)/B204 CS(T2)/D201 ','CS(L)/****','BREAK','TOC(L)/C204','COA(L)/C204','AM(L)/C204','OOPS/C204','BREAK','COA(P1)/A107 DBMS(P2)/A102 AM(P3)/C304','COA(P1)/A107 DBMS(P2)/A102 AM(P3)/C304')";
+        db.execSQL(ROW1);
+        ROW1 = "INSERT INTO " + TABLE_CHECK_CLASS + " Values (3,'WEDNESDAY','DBMS(T2)/C302','COA(T2)/C302','BREAK','COA(T1)/A304 TOC(T2)/A103','DBMS(L)/B201','OOPS(L)/C204','AM(L)/C204','BREAK','TOC(L)/C204','null')";
+        db.execSQL(ROW1);
+        ROW1 = "INSERT INTO " + TABLE_CHECK_CLASS + " Values (4,'THURSDAY','OOPS(P2)/C305','OOPS(P2)/C305','BREAK','CS(T1)/C302','TOC(T1)/C302','CS(L)/C204','COA(L)/C204','BREAK','CS(P3)/A306','CS(P3)/A306')";
+        db.execSQL(ROW1);
+        ROW1 = "INSERT INTO " + TABLE_CHECK_CLASS + " Values (5,'FRIDAY','OOPS(P1)/C305  CS(P2)/A306','OOPS(P1)/C305  CS(P2)/A306','BREAK','DBMS(L)/C301','DBMS(T1)/C305  AM(T2)/C301','CS(L)/C204','COA(L)/C204','BREAK','CS(P1)/A306  OOPS(P3)/C305','CS(P1)/A306  OOPS(P3)/C305')";
+        db.execSQL(ROW1);
         db.close();
 
         Log.d(" ", "addrow_check_class: Succesfully added day");

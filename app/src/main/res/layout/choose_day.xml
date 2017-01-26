@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SELECT DAY TO VIEW CLASSES"
+        android:textAlignment="center"
+        android:textSize="24sp" />
+    <Button
+        android:text="MONDAY"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="mondayButtonClicked"
+        android:id="@+id/day_monday"
+        />
+
+    <Button
+        android:text="TUESDAY"
+        android:onClick="tuesdayButtonClicked"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/day_tuesday" />
+
+    <Button
+        android:text="WEDNESDAY"
+        android:onClick="wednesdayButtonClicked"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/day_wednesday" />
+
+
+    <Button
+        android:text="THURSDAY"
+        android:onClick="thursdayButtonClicked"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/day_thursday" />
+
+
+    <Button
+        android:text="FRIDAY"
+        android:onClick="fridayButtonClicked"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/day_friday" />
+
+
+</LinearLayout>
