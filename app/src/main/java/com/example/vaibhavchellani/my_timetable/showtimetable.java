@@ -29,12 +29,13 @@ public class showtimetable extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         Toast.makeText(this, "inside dpo stuff ", Toast.LENGTH_SHORT).show();
         Intent startnext= new Intent(this,today_timetable.class);
-        String send_to_intent;
+        String send_to_intent="";
         switch (v.getId()) {
             case R.id.day_monday: {
                 Toast.makeText(this, "so its monday after all", Toast.LENGTH_SHORT).show();
                 // do something for button 1 click
-                send_to_intent = db.databaseToString("attendance", "MONDAY");
+                //send_to_intent = db.databaseToString("attendance", "MONDAY");
+                send_to_intent="FUCK FUCK FUCK";
                 startnext.putExtra("toprint", send_to_intent);
                 startActivity(startnext);
                 break;

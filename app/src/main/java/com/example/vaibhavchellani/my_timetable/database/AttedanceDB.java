@@ -181,7 +181,11 @@ public class AttedanceDB extends SQLiteOpenHelper {
         String TAG=TABLE_CHECK_CLASS;
         Log.d(TAG, "getTableAsString called");
         String tableString = "";
-        Cursor allRows  = db.rawQuery("SELECT * FROM " + tableName, null);
+        /*Cursor allRows  = db.rawQuery("SELECT * FROM " + tableName, null);*/
+
+        //where prpblem is happening
+        String[] day=;
+        Cursor allRows  = db.rawQuery("select * from "+tableName+ " where " + COLUMN_DAY + "=?", day);
         if (allRows.moveToFirst() ){
             String[] columnNames = allRows.getColumnNames();
             do {
