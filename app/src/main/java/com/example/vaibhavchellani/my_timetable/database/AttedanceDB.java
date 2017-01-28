@@ -1,5 +1,6 @@
 package com.example.vaibhavchellani.my_timetable.database;
 
+import android.app.ActionBar;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -124,8 +125,36 @@ public class AttedanceDB extends SQLiteOpenHelper {
         Log.d(" ", "addrow_check_class: Succesfully added day");
     }
 
-    public String databaseToString(){
-        String dbString = "";
+    public String databaseToString(String Table_Name,String day){
+
+        SQLiteDatabase db=getWritableDatabase();
+        String TAG= Table_Name;
+        Log.d(TAG, "getTableAsString called");
+        String tableString = "";
+        String query= "SELECT * FROM " + Table_Name + " WHERE " + COLUMN_DAY + "='" + day +"'";
+
+        Cursor allRows  = db.rawQuery(query, null);
+        if (allRows.moveToFirst() ){
+            String[] columnNames = allRows.getColumnNames();
+            do {
+                for (String name: columnNames) {
+                    tableString += String.format("%s: %s\n", name,
+                            allRows.getString(allRows.getColumnIndex(name)));
+                }
+                tableString += "\n";
+
+            } while (allRows.moveToNext());
+        }
+        Log.d("in databse to string", "we are getting a "+tableString);
+        return tableString;
+
+
+
+
+
+
+
+        /*        String dbString = "";
         SQLiteDatabase db = getWritableDatabase();
         String query = "SELECT * FROM " + TABLE_CHECK_CLASS ;// why not leave out the WHERE  clause?
 
@@ -144,7 +173,7 @@ public class AttedanceDB extends SQLiteOpenHelper {
             recordSet.moveToNext();
         }
         db.close();
-        return dbString;
+        return dbString;*/
     }
 
     public String getTableAsString(String tableName) {

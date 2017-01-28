@@ -1,5 +1,6 @@
 package com.example.vaibhavchellani.my_timetable;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,15 +29,37 @@ public class MainActivity extends AppCompatActivity {
     private static final String[] year = {"None Selected", "I Year", "II Year", "III Year ", "IV year", "Extra year ;)"};
     private static final String[] branch = {"None Selected", "IT", "CSE", "ECE", "ICE"};
     private static final String[] shift = {"None Selected", "Evening Shift","Morning Shift"};
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.trial);
+        setContentView(R.layout.landingpage);
 
         db = new AttedanceDB(this);
         db.addrow_check_class();
         db.make_attendance_table();
+        findViewById(R.id.button_view_timetable).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent opentimetable=new Intent(MainActivity.this,showtimetable.class);
+                startActivity(opentimetable);
+            }
+        });
 
+        findViewById(R.id.button_view_attendance).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        findViewById(R.id.button_contact).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
 
         /*textView_year=(TextView)findViewById(R.id.select_year_textview);

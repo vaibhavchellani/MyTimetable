@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    >
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SELECT SUBJECT TO ALTER ATTENDANCE"
+        android:textAlignment="center"
+        android:textSize="24sp" />
+    <Button
+        android:text="AM"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="AM_ButtonClicked"
+        android:id="@+id/AM_button"
+        />
+
+
+    <Button
+        android:text="CS"
+        android:onClick="CS_ButtonClicked"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/CS_button" />
+
+
+    <Button
+        android:text="TOC"
+        android:onClick="TOC_ButtonClicked"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/TOC_button" />
+
+
+    <Button
+        android:text="OOPS"
+        android:onClick="OOPS_ButtonClicked"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/OOPS_button" />
+
+
+    <Button
+        android:text="COA"
+        android:onClick="COA_ButtonClicked"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/COA_button" />
+
+
+    <Button
+        android:text="DBMS"
+        android:onClick="DBMS_ButtonClicked"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/DBMS_button" />
+
+</LinearLayout>

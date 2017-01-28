@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:text="Present Counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="23dp"
+        android:id="@+id/present_textview" />
+
+    <TextView
+        android:text="0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/present_textview"
+        android:layout_alignStart="@+id/present_textview"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="18dp"
+        android:id="@+id/view_present_counter" />
+
+    <Button
+        android:text="+"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_present_counter"
+        android:layout_marginStart="11dp"
+        android:layout_alignTop="@+id/subtract_present_counter"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/view_present_counter" />
+
+    <Button
+        android:text="MINUS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/subtract_present_counter"
+        android:layout_marginStart="11dp"
+        android:layout_below="@+id/view_present_counter" />
+
+
+
+
+
+
+
+    <TextView
+        android:text="ABSENT Counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="23dp"
+        android:id="@+id/absent_textview" />
+
+    <TextView
+        android:text="0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/absent_textview"
+        android:layout_alignStart="@+id/absent_textview"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="18dp"
+        android:id="@+id/view_absent_counter" />
+
+    <Button
+        android:text="+"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_absent_counter"
+        android:layout_marginStart="11dp"
+        android:layout_alignTop="@+id/subtract_absent_counter"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/view_absent_counter" />
+
+    <Button
+        android:text="MINUS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/subtract_absent_counter"
+        android:layout_marginStart="11dp"
+        android:layout_below="@+id/view_absent_counter" />
+
+    <Button
+        android:text="save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button3" />
+
+</LinearLayout>
