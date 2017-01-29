@@ -18,12 +18,12 @@ import com.example.vaibhavchellani.my_timetable.MainActivity;
 public class AttedanceDB extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "attendanceDB.db";
-    private static final int DATABASE_VERSION=9;
+    private static final int DATABASE_VERSION=10;
     ContentValues values=new ContentValues();
-
+    // TODO change all column names to caps like lecture 1
     public static final String COLUMN_ID = "_id";
     public static final String COLUMN_DAY="DAY";
-    public static final String COLUMN_LECTURE1="Ten_thirty";
+    public static final String COLUMN_LECTURE1="TEN_THIRTY";
     public static final String COLUMN_LECTURE2="Eleven_twentyfive";
     public static final String COLUMN_LECTURE3="Twelve_twenty";
     public static final String COLUMN_LECTURE4="Twelve_fifty";
@@ -110,15 +110,15 @@ public class AttedanceDB extends SQLiteOpenHelper {
     }
     public void addrow_check_class(){
         SQLiteDatabase db=getWritableDatabase();
-        String ROW1 = "INSERT INTO " + TABLE_CHECK_CLASS + " Values (1,'MONDAY','AM(P1)/C304 COA(P2)/A107 DBMS(P3)/A102','AM(P1)/C304 COA(P2)/A107 DBMS(P3)/A102','BREAK','OOPS(L) / C301','DBMS/B204','AM(L)/C204','TOC(L)/C204','BREAK','DBMS(P1)/A102 AM(P2)/C304 COA(P3)/A107','DBMS(P1)/A102 AM(P2)/C304 COA(P3)/A107')";
+        String ROW1 = "INSERT INTO " + TABLE_CHECK_CLASS + " Values (1,'MONDAY','AM(P1)/C304    COA(P2)/A107     DBMS(P3)/A102','AM(P1)/C304     COA(P2)/A107     DBMS(P3)/A102','BREAK','OOPS(L) / C301','DBMS/B204','AM(L)/C204','TOC(L)/C204','BREAK','DBMS(P1)/A102     AM(P2)/C304     COA(P3)/A107','DBMS(P1)/A102     AM(P2)/C304     COA(P3)/A107')";
         db.execSQL(ROW1);
-        ROW1 = "INSERT INTO " + TABLE_CHECK_CLASS + " Values (2,'TUESDAY','AM(T1)/B204 CS(T2)/D201 ','CS(L)/****','BREAK','TOC(L)/C204','COA(L)/C204','AM(L)/C204','OOPS/C204','BREAK','COA(P1)/A107 DBMS(P2)/A102 AM(P3)/C304','COA(P1)/A107 DBMS(P2)/A102 AM(P3)/C304')";
+        ROW1 = "INSERT INTO " + TABLE_CHECK_CLASS + " Values (2,'TUESDAY','AM(T1)/B204    CS(T2)/D201 ','CS(L)/****','BREAK','TOC(L)/C204','COA(L)/C204','AM(L)/C204','OOPS/C204','BREAK','COA(P1)/A107     DBMS(P2)/A102     AM(P3)/C304','COA(P1)/A107     DBMS(P2)/A102     AM(P3)/C304')";
         db.execSQL(ROW1);
-        ROW1 = "INSERT INTO " + TABLE_CHECK_CLASS + " Values (3,'WEDNESDAY','DBMS(T2)/C302','COA(T2)/C302','BREAK','COA(T1)/A304 TOC(T2)/A103','DBMS(L)/B201','OOPS(L)/C204','AM(L)/C204','BREAK','TOC(L)/C204','null')";
+        ROW1 = "INSERT INTO " + TABLE_CHECK_CLASS + " Values (3,'WEDNESDAY','DBMS(T2)/C302','COA(T2)/C302','BREAK','COA(T1)/A304   TOC(T2)/A103','DBMS(L)/B201','OOPS(L)/C204','AM(L)/C204','BREAK','TOC(L)/C204','null')";
         db.execSQL(ROW1);
         ROW1 = "INSERT INTO " + TABLE_CHECK_CLASS + " Values (4,'THURSDAY','OOPS(P2)/C305','OOPS(P2)/C305','BREAK','CS(T1)/C302','TOC(T1)/C302','CS(L)/C204','COA(L)/C204','BREAK','CS(P3)/A306','CS(P3)/A306')";
         db.execSQL(ROW1);
-        ROW1 = "INSERT INTO " + TABLE_CHECK_CLASS + " Values (5,'FRIDAY','OOPS(P1)/C305  CS(P2)/A306','OOPS(P1)/C305  CS(P2)/A306','BREAK','DBMS(L)/C301','DBMS(T1)/C305  AM(T2)/C301','CS(L)/C204','COA(L)/C204','BREAK','CS(P1)/A306  OOPS(P3)/C305','CS(P1)/A306  OOPS(P3)/C305')";
+        ROW1 = "INSERT INTO " + TABLE_CHECK_CLASS + " Values (5,'FRIDAY','OOPS(P1)/C305     CS(P2)/A306','OOPS(P1)/C305     CS(P2)/A306','BREAK','DBMS(L)/C301','DBMS(T1)/C305     AM(T2)/C301','CS(L)/C204','COA(L)/C204','BREAK','CS(P1)/A306     OOPS(P3)/C305','CS(P1)/A306     OOPS(P3)/C305')";
         db.execSQL(ROW1);
         db.close();
 
@@ -128,27 +128,21 @@ public class AttedanceDB extends SQLiteOpenHelper {
     public String databaseToString(String Table_Name,String day){
 
         SQLiteDatabase db=getWritableDatabase();
-        String TAG= Table_Name;
+        String TAG=TABLE_CHECK_CLASS;
         Log.d(TAG, "getTableAsString called");
         String tableString = "";
-        String query= "SELECT * FROM " + Table_Name + " WHERE " + COLUMN_DAY + "='" + day +"'";
-
-        Cursor allRows  = db.rawQuery(query, null);
+        Cursor allRows  = db.rawQuery("select * from "+Table_Name+ " where " + COLUMN_DAY + "= '"+day+"' ",null);
         if (allRows.moveToFirst() ){
             String[] columnNames = allRows.getColumnNames();
-            do {
                 for (String name: columnNames) {
-                    tableString += String.format("%s: %s\n", name,
+                    tableString += String.format("%s:    %s\n", name,
                             allRows.getString(allRows.getColumnIndex(name)));
                 }
                 tableString += "\n";
-
-            } while (allRows.moveToNext());
         }
-        Log.d("in databse to string", "we are getting a "+tableString);
+
+
         return tableString;
-
-
 
 
 
@@ -181,11 +175,11 @@ public class AttedanceDB extends SQLiteOpenHelper {
         String TAG=TABLE_CHECK_CLASS;
         Log.d(TAG, "getTableAsString called");
         String tableString = "";
-        /*Cursor allRows  = db.rawQuery("SELECT * FROM " + tableName, null);*/
+        //Cursor allRows  = db.rawQuery("SELECT * FROM " + tableName, null);
 
         //where prpblem is happening
-        String[] day=;
-        Cursor allRows  = db.rawQuery("select * from "+tableName+ " where " + COLUMN_DAY + "=?", day);
+        //String[] day=;
+        Cursor allRows  = db.rawQuery("select * from "+tableName+ " where " + COLUMN_DAY + "= 'MONDAY' ",null);
         if (allRows.moveToFirst() ){
             String[] columnNames = allRows.getColumnNames();
             do {

@@ -16,7 +16,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".showtimetable" />
-        <activity android:name=".today_timetable" /><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+        <activity android:name=".today_timetable" />
+        <activity android:name=".showattendance" /><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
         <meta-data
             android:name="com.google.android.gms.version"

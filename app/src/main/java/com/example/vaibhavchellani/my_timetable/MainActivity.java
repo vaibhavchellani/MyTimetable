@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         db.make_attendance_table();
 
         String dbstring = db.getTableAsString(AttedanceDB.TABLE_CHECK_CLASS);
-        Toast.makeText(this, dbstring , Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, dbstring , Toast.LENGTH_LONG).show();
 
 
         findViewById(R.id.button_view_timetable).setOnClickListener(new View.OnClickListener() {
@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.button_view_attendance).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent opentimetable=new Intent(MainActivity.this,showattendance.class);
+                startActivity(opentimetable);
 
             }
         });
