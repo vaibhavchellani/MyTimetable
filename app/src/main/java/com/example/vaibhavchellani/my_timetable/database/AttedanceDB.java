@@ -175,11 +175,7 @@ public class AttedanceDB extends SQLiteOpenHelper {
         String TAG=TABLE_CHECK_CLASS;
         Log.d(TAG, "getTableAsString called");
         String tableString = "";
-        //Cursor allRows  = db.rawQuery("SELECT * FROM " + tableName, null);
-
-        //where prpblem is happening
-        //String[] day=;
-        Cursor allRows  = db.rawQuery("select * from "+tableName+ " where " + COLUMN_DAY + "= 'MONDAY' ",null);
+        Cursor allRows  = db.rawQuery("SELECT * FROM " + tableName, null);
         if (allRows.moveToFirst() ){
             String[] columnNames = allRows.getColumnNames();
             do {
@@ -239,4 +235,34 @@ public class AttedanceDB extends SQLiteOpenHelper {
             catch (Exception e) {
                 Toast.makeText(TestProjectActivity.this, "ERROR "+e.toString(), Toast.LENGTH_LONG).show();
             }}}*/
+
+    public void add_attendance(int value, String subject){
+
+    }
+    public void subtract_attendance(int value, String subject){
+
+    }
+    public String view_attendance(String Column_name, String subject){
+        SQLiteDatabase db = getWritableDatabase();
+        String query = "select * from "+TABLE_ATTENDANCE+ " where " + COLUMN_SUBJECT + "= '"+subject+"' " ;// why not leave out the WHERE  clause?
+        String dbString=" ";
+        //Cursor points to a location in your results
+        Cursor recordSet = db.rawQuery(query, null);
+        //Move to the first row in your results
+        recordSet.moveToFirst();
+
+        //Position after the last row means the end of the results
+        while (!recordSet.isAfterLast()) {
+            // null could happen if we used our empty constructor
+            if (recordSet.getString(recordSet.getColumnIndex(Column_name)) != null) {
+                dbString += recordSet.getString(recordSet.getColumnIndex(Column_name));
+                dbString += "\n";
+            }
+            recordSet.moveToNext();
+        }
+        db.close();
+
+        return dbString;
+    }
+
 }

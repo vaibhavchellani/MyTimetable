@@ -39,9 +39,9 @@ public class MainActivity extends AppCompatActivity {
         db = new AttedanceDB(this);
         db.addrow_check_class();
         db.make_attendance_table();
-
+/*
         String dbstring = db.getTableAsString(AttedanceDB.TABLE_CHECK_CLASS);
-        //Toast.makeText(this, dbstring , Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, dbstring , Toast.LENGTH_LONG).show();*/
 
 
         findViewById(R.id.button_view_timetable).setOnClickListener(new View.OnClickListener() {

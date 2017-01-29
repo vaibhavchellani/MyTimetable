@@ -15,7 +15,7 @@
         android:id="@+id/present_textview" />
 
     <TextView
-        android:text="0"
+        android:text=""
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/present_textview"
@@ -59,7 +59,7 @@
         android:id="@+id/absent_textview" />
 
     <TextView
-        android:text="0"
+        android:text=""
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/absent_textview"
@@ -91,5 +91,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/button3" />
+
+    <Button
+        android:text="Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button2" />
 
 </LinearLayout>
