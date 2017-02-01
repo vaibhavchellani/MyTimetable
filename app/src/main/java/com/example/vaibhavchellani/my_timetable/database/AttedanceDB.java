@@ -236,10 +236,45 @@ public class AttedanceDB extends SQLiteOpenHelper {
                 Toast.makeText(TestProjectActivity.this, "ERROR "+e.toString(), Toast.LENGTH_LONG).show();
             }}}*/
 
-    public void add_attendance(int value, String subject){
+    public int  add_attendance(String subject,String Column_name){
+        SQLiteDatabase db = getWritableDatabase();
+        String query = "select * from "+TABLE_ATTENDANCE+ " where " + COLUMN_SUBJECT + "= '"+subject+"' " ;// why not leave out the WHERE  clause?
+        int newvalue=0;
+        //Cursor points to a location in your results
+        Cursor recordSet = db.rawQuery(query, null);
+        //Move to the first row in your results
+        recordSet.moveToFirst();
+        if (recordSet.getString(recordSet.getColumnIndex(Column_name)) != null) {
+            newvalue= recordSet.getInt(recordSet.getColumnIndex(Column_name));
 
+        }
+        newvalue+=1;
+        String new_query="update "+TABLE_ATTENDANCE+" set "+Column_name+" = "+newvalue+" where "+ COLUMN_SUBJECT + "= '"+subject+"' " ;
+        db.execSQL(new_query);
+        db.close();
+        return newvalue;
     }
-    public void subtract_attendance(int value, String subject){
+    public int subtract_attendance(String subject,String Column_name){
+        SQLiteDatabase db = getWritableDatabase();
+        String query = "select * from "+TABLE_ATTENDANCE+ " where " + COLUMN_SUBJECT + "= '"+subject+"' " ;// why not leave out the WHERE  clause?
+        int newvalue=0;
+        //Cursor points to a location in your results
+        Cursor recordSet = db.rawQuery(query, null);
+        //Move to the first row in your results
+        recordSet.moveToFirst();
+        if (recordSet.getString(recordSet.getColumnIndex(Column_name)) != null) {
+            newvalue= recordSet.getInt(recordSet.getColumnIndex(Column_name));
+
+        }
+        if(newvalue>=0)
+        newvalue-=1;
+        else
+        newvalue=-1;
+
+        String new_query="update "+TABLE_ATTENDANCE+" set "+Column_name+" = "+newvalue+" where "+ COLUMN_SUBJECT + "= '"+subject+"' " ;
+        db.execSQL(new_query);
+        db.close();
+        return newvalue;
 
     }
     public String view_attendance(String Column_name, String subject){
@@ -252,17 +287,33 @@ public class AttedanceDB extends SQLiteOpenHelper {
         recordSet.moveToFirst();
 
         //Position after the last row means the end of the results
-        while (!recordSet.isAfterLast()) {
+
             // null could happen if we used our empty constructor
             if (recordSet.getString(recordSet.getColumnIndex(Column_name)) != null) {
                 dbString += recordSet.getString(recordSet.getColumnIndex(Column_name));
                 dbString += "\n";
             }
-            recordSet.moveToNext();
+
+
+        db.close();
+        return dbString;
+    }
+    public int getAttendanceInInt(String Column_name,String subject ){
+        SQLiteDatabase db = getWritableDatabase();
+        String query = "select * from "+TABLE_ATTENDANCE+ " where " + COLUMN_SUBJECT + "= '"+subject+"' " ;// why not leave out the WHERE  clause?
+        int newvalue=0;
+        //Cursor points to a location in your results
+        Cursor recordSet = db.rawQuery(query, null);
+        //Move to the first row in your results
+        recordSet.moveToFirst();
+        if (recordSet.getString(recordSet.getColumnIndex(Column_name)) != null) {
+            newvalue= recordSet.getInt(recordSet.getColumnIndex(Column_name));
+
         }
+
         db.close();
 
-        return dbString;
+        return newvalue;
     }
 
 }

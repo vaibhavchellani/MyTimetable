@@ -87,15 +87,23 @@
         android:layout_below="@+id/view_absent_counter" />
 
     <Button
-        android:text="save"
+        android:text="SHOW PERCENTAGE "
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button3" />
+        android:id="@+id/percentage_button" />
 
-    <Button
-        android:text="Button"
+    <TextView
+        android:text="percentage "
+        android:textSize="50px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button2" />
+        android:id="@+id/percentage_textview" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="35px"
+        android:id="@+id/below_percentage_textview" />
 
 </LinearLayout>

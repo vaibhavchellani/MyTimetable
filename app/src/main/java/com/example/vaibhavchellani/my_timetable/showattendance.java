@@ -37,47 +37,40 @@ public class showattendance extends AppCompatActivity implements View.OnClickLis
         Intent intent=new Intent(this,alter_attendance.class);
         switch (v.getId()) {
             case R.id.AM_button: {
-                // do something for button 1 click/*
-                /*String  send_to_intent = db.getTableAsString(AttedanceDB.TABLE_CHECK_CLASS);
-                Toast.makeText(this, "so its monday after all"+send_to_intent, Toast.LENGTH_SHORT).show();*/
                 intent.putExtra("subject","AM");
                 startActivity(intent);
                 break;
             }
 
-            /*case R.id.day_tuesday: {
-                // do something for button 2 click
-                String dbstring = db.databaseToString(db.TABLE_CHECK_CLASS,"TUESDAY");
-                startnext.putExtra("toprint", dbstring);
-                startActivity(startnext);
+            case R.id.CS_button: {
+                intent.putExtra("subject","CS");
+                startActivity(intent);
                 break;
             }
 
-            case R.id.day_wednesday: {
-                // do something for button 2 click
-                String dbstring = db.databaseToString(db.TABLE_CHECK_CLASS,"WEDNESDAY");
-                startnext.putExtra("toprint", dbstring);
-                startActivity(startnext);
+            case R.id.TOC_button: {
+                intent.putExtra("subject","TOC");
+                startActivity(intent);
+                break;
+            }
+            case R.id.OOPS_button: {
+                intent.putExtra("subject","OOPS");
+                startActivity(intent);
+                break;
+            }
+            case R.id.COA_button: {
+                intent.putExtra("subject","COA");
+                startActivity(intent);
+                break;
+            }
+            case R.id.DBMS_button: {
+                intent.putExtra("subject","DBMS");
+                startActivity(intent);
                 break;
             }
 
-            case R.id.day_thursday: {
-                // do something for button 2 click
-                String dbstring = db.databaseToString(db.TABLE_CHECK_CLASS,"THURSDAY");
-                startnext.putExtra("toprint", dbstring);
-                startActivity(startnext);
-                break;
-            }
-            case R.id.day_friday: {
-                // do something for button 2 click
-                String dbstring = db.databaseToString(db.TABLE_CHECK_CLASS,"FRIDAY");
-                startnext.putExtra("toprint", dbstring);
-                startActivity(startnext);
-                break;
-            }
 
             //.... etc
-            */
 
 
         }
