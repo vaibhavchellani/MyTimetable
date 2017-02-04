@@ -144,30 +144,6 @@ public class AttedanceDB extends SQLiteOpenHelper {
 
         return tableString;
 
-
-
-
-
-        /*        String dbString = "";
-        SQLiteDatabase db = getWritableDatabase();
-        String query = "SELECT * FROM " + TABLE_CHECK_CLASS ;// why not leave out the WHERE  clause?
-
-        //Cursor points to a location in your results
-        Cursor recordSet = db.rawQuery(query, null);
-        //Move to the first row in your results
-        recordSet.moveToFirst();
-
-        //Position after the last row means the end of the results
-        while (!recordSet.isAfterLast()) {
-            // null could happen if we used our empty constructor
-            if (recordSet.getString(recordSet.getColumnIndex(COLUMN_LECTURE1)) != null) {
-                dbString += recordSet.getString(recordSet.getColumnIndex(COLUMN_LECTURE1));
-                dbString += "\n";
-            }
-            recordSet.moveToNext();
-        }
-        db.close();
-        return dbString;*/
     }
 
     public String getTableAsString(String tableName) {
@@ -211,30 +187,6 @@ public class AttedanceDB extends SQLiteOpenHelper {
         }
         return result;
     }
-    /*
-    public class TestProjectActivity extends Activity {
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.main);
-            SQLiteDatabase db;
-            db = openOrCreateDatabase( "Temp.db"        , SQLiteDatabase.CREATE_IF_NECESSARY        , null          );
-            try {
-                final String CREATE_TABLE_CONTAIN = "CREATE TABLE IF NOT EXISTS tbl_Contain ("
-                        + "ID INTEGER primary key AUTOINCREMENT,"
-                        + "DESCRIPTION TEXT,"
-                        + "expirydate DATETIME,"
-                        + "AMOUNT TEXT,"
-                        + "TRNS TEXT," + "isdefault TEXT);";
-                db.execSQL(CREATE_TABLE_CONTAIN);
-                Toast.makeText(TestProjectActivity.this, "table created ", Toast.LENGTH_LONG).show();
-                String sql =
-                        "INSERT or replace INTO tbl_Contain (DESCRIPTION, expirydate, AMOUNT, TRNS,isdefault) VALUES('this is','03/04/2005','5000','tran','y')" ;
-                db.execSQL(sql);
-            }
-            catch (Exception e) {
-                Toast.makeText(TestProjectActivity.this, "ERROR "+e.toString(), Toast.LENGTH_LONG).show();
-            }}}*/
 
     public int  add_attendance(String subject,String Column_name){
         SQLiteDatabase db = getWritableDatabase();
@@ -314,6 +266,25 @@ public class AttedanceDB extends SQLiteOpenHelper {
         db.close();
 
         return newvalue;
+    }
+    public String getNextClass(String Column_name,String day){
+        if(day.equalsIgnoreCase("SATURDAY")||day.equalsIgnoreCase("SUNDAY"))
+        {
+            return "ENJOY YOUR HOLIDAY BITCHES";
+        }
+        SQLiteDatabase db = getWritableDatabase();
+        String query = "select * from "+TABLE_CHECK_CLASS+ " where " + COLUMN_DAY + "= '"+day+"' " ;// why not leave out the WHERE  clause?
+        String next_class="";
+        //Cursor points to a location in your results
+        Cursor recordSet = db.rawQuery(query, null);
+        //Move to the first row in your results
+        recordSet.moveToFirst();
+        if (recordSet.getString(recordSet.getColumnIndex(Column_name)) != null) {
+            next_class= recordSet.getString(recordSet.getColumnIndex(Column_name));
+
+        }
+        db.close();
+        return next_class;
     }
 
 }

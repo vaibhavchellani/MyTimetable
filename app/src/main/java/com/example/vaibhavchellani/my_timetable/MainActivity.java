@@ -1,5 +1,7 @@
 package com.example.vaibhavchellani.my_timetable;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +17,8 @@ import android.widget.Toast;
 
 import com.example.vaibhavchellani.my_timetable.database.AttedanceDB;
 
+import java.util.Calendar;
+
 public class MainActivity extends AppCompatActivity {
     private Spinner spinner_year,spinner_branch,spinner_shift;
 
@@ -24,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView textView_year,textView_branch,textView_shift;
     AttedanceDB db;
+    Notification_reciever hey;
 
 
     private static final String[] year = {"None Selected", "I Year", "II Year", "III Year ", "IV year", "Extra year ;)"};
@@ -35,13 +40,118 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.landingpage);
-
+        //hey= new Notification_reciever();
         db = new AttedanceDB(this);
         db.addrow_check_class();
         db.make_attendance_table();
-/*
-        String dbstring = db.getTableAsString(AttedanceDB.TABLE_CHECK_CLASS);
-        //Toast.makeText(this, dbstring , Toast.LENGTH_LONG).show();*/
+        //Toast.makeText(this, db.getNextClass(db.COLUMN_LECTURE1,hey.getCurrentDay()), Toast.LENGTH_SHORT).show();
+
+        Calendar timeOff9 = Calendar.getInstance();
+        AlarmManager alarm_manager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+        //first intent for first lecture
+        Intent intent1 = new Intent(this, Notification_reciever.class);
+        intent1.setAction("lecture 1");
+        PendingIntent pendingIntent1 = PendingIntent.getBroadcast(this, 0, intent1, 0);
+
+        timeOff9.set(Calendar.HOUR_OF_DAY, 0);
+        timeOff9.set(Calendar.MINUTE, 6);
+        timeOff9.set(Calendar.SECOND, 0);
+        alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(), pendingIntent1);
+
+
+        //second intent for second lecture
+        Intent intent2 = new Intent(this, Notification_reciever.class);
+        intent2.setAction("lecture 2");
+        PendingIntent pendingIntent2 = PendingIntent.getBroadcast(this, 0, intent2, 0);
+
+        timeOff9.set(Calendar.HOUR_OF_DAY, 0);
+        timeOff9.set(Calendar.MINUTE, 6);
+        timeOff9.set(Calendar.SECOND, 30);
+        alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(), pendingIntent2);
+
+        //third intent for 3 lecture
+        Intent intent3 = new Intent(this, Notification_reciever.class);
+        intent3.setAction("lecture 3");
+        PendingIntent pendingIntent3 = PendingIntent.getBroadcast(this, 0, intent3, 0);
+
+        timeOff9.set(Calendar.HOUR_OF_DAY, 0);
+        timeOff9.set(Calendar.MINUTE, 7);
+        timeOff9.set(Calendar.SECOND, 0);
+        alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(), pendingIntent3);
+
+        //FOURTH INTENT
+        Intent intent4 = new Intent(this, Notification_reciever.class);
+        intent4.setAction("lecture 4");
+        PendingIntent pendingIntent4 = PendingIntent.getBroadcast(this, 0, intent4, 0);
+
+        timeOff9.set(Calendar.HOUR_OF_DAY, 0);
+        timeOff9.set(Calendar.MINUTE, 7);
+        timeOff9.set(Calendar.SECOND, 0);
+        alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(), pendingIntent4);
+
+        //FIFTH INTENT
+        Intent intent5 = new Intent(this, Notification_reciever.class);
+        intent5.setAction("lecture 5");
+        PendingIntent pendingIntent5 = PendingIntent.getBroadcast(this, 0, intent5, 0);
+
+        timeOff9.set(Calendar.HOUR_OF_DAY, 0);
+        timeOff9.set(Calendar.MINUTE, 7);
+        timeOff9.set(Calendar.SECOND, 0);
+        alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(), pendingIntent5);
+
+        //SIXTH INTENT
+        Intent intent6 = new Intent(this, Notification_reciever.class);
+        intent6.setAction("lecture 6");
+        PendingIntent pendingIntent6 = PendingIntent.getBroadcast(this, 0, intent6, 0);
+
+        timeOff9.set(Calendar.HOUR_OF_DAY, 0);
+        timeOff9.set(Calendar.MINUTE, 7);
+        timeOff9.set(Calendar.SECOND, 0);
+        alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(), pendingIntent6);
+
+        //SEVENTH INTENT
+        Intent intent7 = new Intent(this, Notification_reciever.class);
+        intent7.setAction("lecture 7");
+        PendingIntent pendingIntent7 = PendingIntent.getBroadcast(this, 0, intent7, 0);
+
+        timeOff9.set(Calendar.HOUR_OF_DAY, 0);
+        timeOff9.set(Calendar.MINUTE, 7);
+        timeOff9.set(Calendar.SECOND, 0);
+        alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(), pendingIntent7);
+
+
+        //EIGHTH INTENT
+        Intent intent8 = new Intent(this, Notification_reciever.class);
+        intent8.setAction("lecture 8");
+        PendingIntent pendingIntent8 = PendingIntent.getBroadcast(this, 0, intent8, 0);
+
+        timeOff9.set(Calendar.HOUR_OF_DAY, 0);
+        timeOff9.set(Calendar.MINUTE, 7);
+        timeOff9.set(Calendar.SECOND, 0);
+        alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(), pendingIntent8);
+
+        //NINTH INTENT
+        Intent intent9 = new Intent(this, Notification_reciever.class);
+        intent3.setAction("lecture 9");
+        PendingIntent pendingIntent9 = PendingIntent.getBroadcast(this, 0, intent9, 0);
+
+        timeOff9.set(Calendar.HOUR_OF_DAY, 0);
+        timeOff9.set(Calendar.MINUTE, 7);
+        timeOff9.set(Calendar.SECOND, 0);
+        alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(), pendingIntent9);
+
+
+        //TENTH INTENT
+        Intent intent10 = new Intent(this, Notification_reciever.class);
+        intent3.setAction("lecture 10");
+        PendingIntent pendingIntent10 = PendingIntent.getBroadcast(this, 0, intent10, 0);
+
+        timeOff9.set(Calendar.HOUR_OF_DAY, 0);
+        timeOff9.set(Calendar.MINUTE, 7);
+        timeOff9.set(Calendar.SECOND, 0);
+        alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(), pendingIntent10);
+
 
 
         findViewById(R.id.button_view_timetable).setOnClickListener(new View.OnClickListener() {
