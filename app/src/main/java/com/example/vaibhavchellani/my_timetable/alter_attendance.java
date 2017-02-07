@@ -97,6 +97,7 @@ public class alter_attendance extends AppCompatActivity  {
     absent =db.getAttendanceInInt(db.COLUMN_ABSENT_COUNTER,extras.getString("subject"));
 
     if(present!=0 || absent !=0) {
+        Toast.makeText(this, "inside if ", Toast.LENGTH_SHORT).show();
         int total=present+absent;
         percentage = (present*100)/total;
 

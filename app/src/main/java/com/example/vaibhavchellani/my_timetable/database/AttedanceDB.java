@@ -168,6 +168,7 @@ public class AttedanceDB extends SQLiteOpenHelper {
     public void deleteTable(String TABLE_NAME){
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_NAME +  " WHERE 1 ");
+        make_attendance_table();
     }
 
 
