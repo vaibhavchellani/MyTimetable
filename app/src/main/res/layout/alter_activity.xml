@@ -86,24 +86,38 @@
         android:layout_marginStart="11dp"
         android:layout_below="@+id/view_absent_counter" />
 
-    <Button
-        android:text="SHOW PERCENTAGE "
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/percentage_button" />
 
     <TextView
         android:text="percentage "
         android:textSize="50px"
+        android:textAlignment="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/percentage_textview" />
 
+
     <TextView
-        android:text="TextView"
+        android:text="No of classes you need to attend  "
+        android:textSize="35px"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         />
+    <TextView
+        android:text="shows an integer"
+        android:textSize="50px"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/no_of_classes_view"
+        />
+
+    <TextView
+        android:textAlignment="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="35px"
         android:id="@+id/below_percentage_textview" />
+
 
 </LinearLayout>

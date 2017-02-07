@@ -4,6 +4,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.NotificationCompat;
@@ -18,6 +19,9 @@ import android.widget.Toast;
 import com.example.vaibhavchellani.my_timetable.database.AttedanceDB;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
+
+import static com.example.vaibhavchellani.my_timetable.R.id.button_contact;
 
 public class MainActivity extends AppCompatActivity {
     private Spinner spinner_year,spinner_branch,spinner_shift;
@@ -29,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView textView_year,textView_branch,textView_shift;
     AttedanceDB db;
     Notification_reciever hey;
+    private Button button_contact;
 
 
     private static final String[] year = {"None Selected", "I Year", "II Year", "III Year ", "IV year", "Extra year ;)"};
@@ -44,8 +49,18 @@ public class MainActivity extends AppCompatActivity {
         db = new AttedanceDB(this);
         db.addrow_check_class();
         db.make_attendance_table();
-        //Toast.makeText(this, db.getNextClass(db.COLUMN_LECTURE1,hey.getCurrentDay()), Toast.LENGTH_SHORT).show();
 
+        button_contact=(Button)findViewById(R.id.button_contact);
+        button_contact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //todo to put email option
+                composeEmail("TIMETABLE APP FEEDBACK");
+            }
+        });
+
+        Calendar calendar=Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
         Calendar timeOff9 = Calendar.getInstance();
         AlarmManager alarm_manager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
@@ -54,30 +69,37 @@ public class MainActivity extends AppCompatActivity {
         intent1.setAction("lecture 1");
         PendingIntent pendingIntent1 = PendingIntent.getBroadcast(this, 0, intent1, 0);
 
-        timeOff9.set(Calendar.HOUR_OF_DAY, 0);
-        timeOff9.set(Calendar.MINUTE, 6);
+        timeOff9.set(Calendar.HOUR_OF_DAY, 10);
+        timeOff9.set(Calendar.MINUTE, 10);
         timeOff9.set(Calendar.SECOND, 0);
+        if(timeOff9.before(calendar))
+            timeOff9.add(Calendar.DAY_OF_MONTH,1);
         alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(), pendingIntent1);
 
 
         //second intent for second lecture
         Intent intent2 = new Intent(this, Notification_reciever.class);
         intent2.setAction("lecture 2");
-        PendingIntent pendingIntent2 = PendingIntent.getBroadcast(this, 0, intent2, 0);
-
-        timeOff9.set(Calendar.HOUR_OF_DAY, 0);
-        timeOff9.set(Calendar.MINUTE, 6);
+        PendingIntent pendingIntent2 = PendingIntent.getBroadcast(this, 0, intent2 , 0);
+        timeOff9.set(Calendar.HOUR_OF_DAY, 11);
+        timeOff9.set(Calendar.MINUTE,5);
         timeOff9.set(Calendar.SECOND, 30);
-        alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(), pendingIntent2);
+        //todo edit the time here
+        if(timeOff9.before(calendar))
+            timeOff9.add(Calendar.DAY_OF_MONTH,1);
+        alarm_manager.setInexactRepeating(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(),AlarmManager.INTERVAL_DAY, pendingIntent2);
+
 
         //third intent for 3 lecture
         Intent intent3 = new Intent(this, Notification_reciever.class);
         intent3.setAction("lecture 3");
         PendingIntent pendingIntent3 = PendingIntent.getBroadcast(this, 0, intent3, 0);
 
-        timeOff9.set(Calendar.HOUR_OF_DAY, 0);
-        timeOff9.set(Calendar.MINUTE, 7);
+        timeOff9.set(Calendar.HOUR_OF_DAY, 12);
+        timeOff9.set(Calendar.MINUTE, 16);
         timeOff9.set(Calendar.SECOND, 0);
+        if(timeOff9.before(calendar))
+            timeOff9.add(Calendar.DAY_OF_MONTH,1);
         alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(), pendingIntent3);
 
         //FOURTH INTENT
@@ -85,9 +107,11 @@ public class MainActivity extends AppCompatActivity {
         intent4.setAction("lecture 4");
         PendingIntent pendingIntent4 = PendingIntent.getBroadcast(this, 0, intent4, 0);
 
-        timeOff9.set(Calendar.HOUR_OF_DAY, 0);
-        timeOff9.set(Calendar.MINUTE, 7);
+        timeOff9.set(Calendar.HOUR_OF_DAY, 12);
+        timeOff9.set(Calendar.MINUTE, 30);
         timeOff9.set(Calendar.SECOND, 0);
+        if(timeOff9.before(calendar))
+            timeOff9.add(Calendar.DAY_OF_MONTH,1);
         alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(), pendingIntent4);
 
         //FIFTH INTENT
@@ -95,9 +119,11 @@ public class MainActivity extends AppCompatActivity {
         intent5.setAction("lecture 5");
         PendingIntent pendingIntent5 = PendingIntent.getBroadcast(this, 0, intent5, 0);
 
-        timeOff9.set(Calendar.HOUR_OF_DAY, 0);
-        timeOff9.set(Calendar.MINUTE, 7);
-        timeOff9.set(Calendar.SECOND, 0);
+        timeOff9.set(Calendar.HOUR_OF_DAY, 13);
+        timeOff9.set(Calendar.MINUTE, 25);
+        timeOff9.set(Calendar.SECOND, 30);
+        if(timeOff9.before(calendar))
+            timeOff9.add(Calendar.DAY_OF_MONTH,1);
         alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(), pendingIntent5);
 
         //SIXTH INTENT
@@ -105,9 +131,11 @@ public class MainActivity extends AppCompatActivity {
         intent6.setAction("lecture 6");
         PendingIntent pendingIntent6 = PendingIntent.getBroadcast(this, 0, intent6, 0);
 
-        timeOff9.set(Calendar.HOUR_OF_DAY, 0);
-        timeOff9.set(Calendar.MINUTE, 7);
-        timeOff9.set(Calendar.SECOND, 0);
+        timeOff9.set(Calendar.HOUR_OF_DAY, 14);
+        timeOff9.set(Calendar.MINUTE, 20);
+        timeOff9.set(Calendar.SECOND, 30);
+        if(timeOff9.before(calendar))
+            timeOff9.add(Calendar.DAY_OF_MONTH,1);
         alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(), pendingIntent6);
 
         //SEVENTH INTENT
@@ -115,9 +143,12 @@ public class MainActivity extends AppCompatActivity {
         intent7.setAction("lecture 7");
         PendingIntent pendingIntent7 = PendingIntent.getBroadcast(this, 0, intent7, 0);
 
-        timeOff9.set(Calendar.HOUR_OF_DAY, 0);
-        timeOff9.set(Calendar.MINUTE, 7);
-        timeOff9.set(Calendar.SECOND, 0);
+        timeOff9.set(Calendar.HOUR_OF_DAY, 15);
+        timeOff9.set(Calendar.MINUTE, 15);
+        timeOff9.set(Calendar.SECOND, 30);
+        if(timeOff9.before(calendar))
+            timeOff9.add(Calendar.DAY_OF_MONTH,1);
+        //todo set repeating
         alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(), pendingIntent7);
 
 
@@ -126,9 +157,11 @@ public class MainActivity extends AppCompatActivity {
         intent8.setAction("lecture 8");
         PendingIntent pendingIntent8 = PendingIntent.getBroadcast(this, 0, intent8, 0);
 
-        timeOff9.set(Calendar.HOUR_OF_DAY, 0);
-        timeOff9.set(Calendar.MINUTE, 7);
+        timeOff9.set(Calendar.HOUR_OF_DAY, 16);
+        timeOff9.set(Calendar.MINUTE, 15);
         timeOff9.set(Calendar.SECOND, 0);
+        if(timeOff9.before(calendar))
+            timeOff9.add(Calendar.DAY_OF_MONTH,1);
         alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(), pendingIntent8);
 
         //NINTH INTENT
@@ -136,9 +169,11 @@ public class MainActivity extends AppCompatActivity {
         intent3.setAction("lecture 9");
         PendingIntent pendingIntent9 = PendingIntent.getBroadcast(this, 0, intent9, 0);
 
-        timeOff9.set(Calendar.HOUR_OF_DAY, 0);
-        timeOff9.set(Calendar.MINUTE, 7);
-        timeOff9.set(Calendar.SECOND, 0);
+        timeOff9.set(Calendar.HOUR_OF_DAY, 16);
+        timeOff9.set(Calendar.MINUTE, 35);
+        timeOff9.set(Calendar.SECOND, 30);
+        if(timeOff9.before(calendar))
+            timeOff9.add(Calendar.DAY_OF_MONTH,1);
         alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(), pendingIntent9);
 
 
@@ -147,11 +182,12 @@ public class MainActivity extends AppCompatActivity {
         intent3.setAction("lecture 10");
         PendingIntent pendingIntent10 = PendingIntent.getBroadcast(this, 0, intent10, 0);
 
-        timeOff9.set(Calendar.HOUR_OF_DAY, 0);
-        timeOff9.set(Calendar.MINUTE, 7);
+        timeOff9.set(Calendar.HOUR_OF_DAY, 17);
+        timeOff9.set(Calendar.MINUTE, 15);
         timeOff9.set(Calendar.SECOND, 0);
+        if(timeOff9.before(calendar))
+            timeOff9.add(Calendar.DAY_OF_MONTH,1);
         alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(), pendingIntent10);
-
 
 
         findViewById(R.id.button_view_timetable).setOnClickListener(new View.OnClickListener() {
@@ -171,12 +207,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.button_contact).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.delete_databse_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                db.deleteTable(db.TABLE_ATTENDANCE);
 
             }
         });
+
 
 
         /*textView_year=(TextView)findViewById(R.id.select_year_textview);
@@ -276,10 +314,18 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "no of coumns are " + db.numberOfColumns(AttedanceDB.TABLE_CHECK_CLASS), Toast.LENGTH_LONG).show();
 
     }
+    public void composeEmail( String subject) {
+        String[] addresses={"vaibhavchellani223@gmail.com"};
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        intent.putExtra(Intent.EXTRA_EMAIL, addresses);
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
 
-    public void startnotif() {
-
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
     }
+
 
 
 

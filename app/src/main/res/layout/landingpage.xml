@@ -67,14 +67,13 @@
         android:layout_alignEnd="@+id/textView2"
         android:layout_marginBottom="14dp" />
 
-    <TextView
-        android:text="trialtextview"
+    <Button
+        android:text="DELETE DATABASE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/button_contact"
-        android:layout_toStartOf="@+id/textView3"
-        android:layout_marginEnd="26dp"
-        android:layout_marginBottom="18dp"
-        android:id="@+id/fucker" />
+        android:layout_alignStart="@+id/textView"
+        android:layout_marginBottom="32dp"
+        android:id="@+id/delete_databse_button" />
 
 </RelativeLayout>

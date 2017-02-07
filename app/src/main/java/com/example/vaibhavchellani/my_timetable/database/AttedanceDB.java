@@ -138,7 +138,7 @@ public class AttedanceDB extends SQLiteOpenHelper {
                     tableString += String.format("%s:    %s\n", name,
                             allRows.getString(allRows.getColumnIndex(name)));
                 }
-                tableString += "\n";
+                tableString += "\n\n";
         }
 
 
@@ -159,7 +159,7 @@ public class AttedanceDB extends SQLiteOpenHelper {
                     tableString += String.format("%s: %s\n", name,
                             allRows.getString(allRows.getColumnIndex(name)));
                 }
-                tableString += "\n";
+                tableString += "\n\n";
 
             } while (allRows.moveToNext());
         }

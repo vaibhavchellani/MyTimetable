@@ -1,11 +1,13 @@
 package com.example.vaibhavchellani.my_timetable;
 
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
+import android.content.IntentSender;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 
@@ -22,7 +24,7 @@ public class Notification_reciever extends BroadcastReceiver{
     @Override
     public void onReceive(Context context, Intent intent) {
         db=new AttedanceDB(context);
-
+        String send_to_notif="";
 
         NotificationManager notificationmanager= (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
 
@@ -32,46 +34,51 @@ public class Notification_reciever extends BroadcastReceiver{
 
         PendingIntent pendingIntent=PendingIntent.getActivity(context,100,repeating_intent,PendingIntent.FLAG_UPDATE_CURRENT);
 
-        NotificationCompat.Builder builder= new NotificationCompat.Builder(context)
-                .setContentIntent(pendingIntent)
-                .setAutoCancel(true)
-                .setSmallIcon(R.drawable.ic_launcher)
-                .setContentTitle("Your Next Class IS");
+
         if(intent.getAction().equalsIgnoreCase("lecture 1")){
-            builder.setContentText(db.getNextClass(db.COLUMN_LECTURE1,getCurrentDay()));
+
+            send_to_notif=(db.getNextClass(db.COLUMN_LECTURE1,getCurrentDay()));
         }
         else if (intent.getAction().equalsIgnoreCase("lecture 2")){
-            builder.setContentText(db.getNextClass(db.COLUMN_LECTURE2,getCurrentDay()));
+            send_to_notif=(db.getNextClass(db.COLUMN_LECTURE2,getCurrentDay()));
         }
         else if (intent.getAction().equalsIgnoreCase("lecture 3")){
-            builder.setContentText(db.getNextClass(db.COLUMN_LECTURE3,getCurrentDay()));
+            send_to_notif=(db.getNextClass(db.COLUMN_LECTURE3,getCurrentDay()));
         }
         else if (intent.getAction().equalsIgnoreCase("lecture 4")){
-            builder.setContentText(db.getNextClass(db.COLUMN_LECTURE4,getCurrentDay()));
+            send_to_notif=(db.getNextClass(db.COLUMN_LECTURE4,getCurrentDay()));
         }
         else if (intent.getAction().equalsIgnoreCase("lecture 5")){
-            builder.setContentText(db.getNextClass(db.COLUMN_LECTURE5,getCurrentDay()));
+            send_to_notif=(db.getNextClass(db.COLUMN_LECTURE5,getCurrentDay()));
         }
         else if (intent.getAction().equalsIgnoreCase("lecture 6")){
-            builder.setContentText(db.getNextClass(db.COLUMN_LECTURE6,getCurrentDay()));
+            send_to_notif=(db.getNextClass(db.COLUMN_LECTURE6,getCurrentDay()));
         }
         else if (intent.getAction().equalsIgnoreCase("lecture 7")){
-            builder.setContentText(db.getNextClass(db.COLUMN_LECTURE7,getCurrentDay()));
+            send_to_notif=(db.getNextClass(db.COLUMN_LECTURE7,getCurrentDay()));
         }
         else if (intent.getAction().equalsIgnoreCase("lecture 8")){
-            builder.setContentText(db.getNextClass(db.COLUMN_LECTURE8,getCurrentDay()));
+            send_to_notif=(db.getNextClass(db.COLUMN_LECTURE8,getCurrentDay()));
         }
         else if (intent.getAction().equalsIgnoreCase("lecture 9")){
-            builder.setContentText(db.getNextClass(db.COLUMN_LECTURE9,getCurrentDay()));
+            send_to_notif=(db.getNextClass(db.COLUMN_LECTURE9,getCurrentDay()));
         }
         else if (intent.getAction().equalsIgnoreCase("lecture 10")){
-            builder.setContentText(db.getNextClass(db.COLUMN_LECTURE10,getCurrentDay()));
+            send_to_notif=(db.getNextClass(db.COLUMN_LECTURE10,getCurrentDay()));
         }
         else {
-            builder.setContentText("no lecture ");
+            send_to_notif=("no lecture ");
         }
 
-
+        final Notification.Builder builder = new Notification.Builder(context);
+        builder.setStyle(new Notification.BigTextStyle(builder)
+                .bigText(send_to_notif)
+                .setBigContentTitle("EXPAND TO SEE MORE")
+                .setSummaryText("Pretty good, right ;)"))
+                .setContentTitle("Greetings")
+                .setContentText("Your next class is ")
+                .setContentIntent(pendingIntent)
+                .setSmallIcon(android.R.drawable.sym_def_app_icon);
         //for having unique notification id
         long time = new Date().getTime();
         String tmpStr = String.valueOf(time);
@@ -87,8 +94,8 @@ public class Notification_reciever extends BroadcastReceiver{
 
         Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_WEEK);
-
-        return daysArray[day+3];
+        //todo change to day-1
+        return daysArray[day-1];
 
     }
 }
