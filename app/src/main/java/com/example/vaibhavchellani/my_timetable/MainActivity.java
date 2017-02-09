@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.NotificationCompat;
@@ -214,12 +215,23 @@ public class MainActivity extends AppCompatActivity {
         intent1.setAction("lecture 1");
         PendingIntent pendingIntent1 = PendingIntent.getBroadcast(this,0,intent1,0);
 
-        timeOff1.set(Calendar.HOUR_OF_DAY, 22);
-        timeOff1.set(Calendar.MINUTE, 4);
+        timeOff1.set(Calendar.HOUR_OF_DAY, 10);
+        timeOff1.set(Calendar.MINUTE, 0);
         timeOff1.set(Calendar.SECOND, 0);
         if(timeOff1.before(calendar))
             timeOff1.add(Calendar.DAY_OF_MONTH,1);
-        alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff1.getTimeInMillis(), pendingIntent1);
+        //todo to test this on xiomi
+        if (Build.VERSION.SDK_INT >= 23) {
+        // Wakes up the device in Doze Mode
+            alarm_manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timeOff1.getTimeInMillis(), pendingIntent1);
+        } else if (Build.VERSION.SDK_INT >= 19) {
+        // Wakes up the device in Idle Mode
+            alarm_manager.setExact(AlarmManager.RTC_WAKEUP, timeOff1.getTimeInMillis(), pendingIntent1);
+        } else {
+        // Old APIs
+            alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff1.getTimeInMillis(), pendingIntent1);
+        }
+        //alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff1.getTimeInMillis(), pendingIntent1);
 
 
         //second intent for second lecture
@@ -227,8 +239,8 @@ public class MainActivity extends AppCompatActivity {
         intent2.setAction("lecture 2");
         Calendar timeOff2 = Calendar.getInstance();
         PendingIntent pendingIntent2 = PendingIntent.getBroadcast(this, 0, intent2 , 0);
-        timeOff2.set(Calendar.HOUR_OF_DAY, 22);
-        timeOff2.set(Calendar.MINUTE,22);
+        timeOff2.set(Calendar.HOUR_OF_DAY, 10);
+        timeOff2.set(Calendar.MINUTE,10);
         timeOff2.set(Calendar.SECOND, 0);
         //todo edit the time here
         if(timeOff2.before(calendar))
@@ -241,8 +253,8 @@ public class MainActivity extends AppCompatActivity {
         intent3.setAction("lecture 3");
         PendingIntent pendingIntent3 = PendingIntent.getBroadcast(this, 0, intent3, 0);
         Calendar timeOff3 = Calendar.getInstance();
-        timeOff3.set(Calendar.HOUR_OF_DAY, 12);
-        timeOff3.set(Calendar.MINUTE, 16);
+        timeOff3.set(Calendar.HOUR_OF_DAY, 10);
+        timeOff3.set(Calendar.MINUTE, 20);
         timeOff3.set(Calendar.SECOND, 0);
         if(timeOff3.before(calendar))
             timeOff3.add(Calendar.DAY_OF_MONTH,1);
@@ -253,7 +265,7 @@ public class MainActivity extends AppCompatActivity {
         intent4.setAction("lecture 4");
         PendingIntent pendingIntent4 = PendingIntent.getBroadcast(this, 0, intent4, 0);
         Calendar timeOff4 = Calendar.getInstance();
-        timeOff4.set(Calendar.HOUR_OF_DAY, 12);
+        timeOff4.set(Calendar.HOUR_OF_DAY, 10);
         timeOff4.set(Calendar.MINUTE, 30);
         timeOff4.set(Calendar.SECOND, 0);
         if(timeOff4.before(calendar))
@@ -265,8 +277,8 @@ public class MainActivity extends AppCompatActivity {
         intent5.setAction("lecture 5");
         PendingIntent pendingIntent5 = PendingIntent.getBroadcast(this, 0, intent5, 0);
         Calendar timeOff5 = Calendar.getInstance();
-        timeOff5.set(Calendar.HOUR_OF_DAY, 22);
-        timeOff5.set(Calendar.MINUTE, 30);
+        timeOff5.set(Calendar.HOUR_OF_DAY, 10);
+        timeOff5.set(Calendar.MINUTE, 40);
         timeOff5.set(Calendar.SECOND, 00);
         if(timeOff5.before(calendar))
             timeOff5.add(Calendar.DAY_OF_MONTH,1);
@@ -277,8 +289,8 @@ public class MainActivity extends AppCompatActivity {
         intent6.setAction("lecture 6");
         PendingIntent pendingIntent6 = PendingIntent.getBroadcast(this, 0, intent6, 0);
         Calendar timeOff6 = Calendar.getInstance();
-        timeOff6.set(Calendar.HOUR_OF_DAY, 22);
-        timeOff6.set(Calendar.MINUTE, 57);
+        timeOff6.set(Calendar.HOUR_OF_DAY, 10);
+        timeOff6.set(Calendar.MINUTE, 50);
         timeOff6.set(Calendar.SECOND, 00);
         if(timeOff6.before(calendar))
             timeOff6.add(Calendar.DAY_OF_MONTH,1);
@@ -289,8 +301,8 @@ public class MainActivity extends AppCompatActivity {
         intent7.setAction("lecture 7");
         PendingIntent pendingIntent7 = PendingIntent.getBroadcast(this, 0, intent7, 0);
         Calendar timeOff7 = Calendar.getInstance();
-        timeOff7.set(Calendar.HOUR_OF_DAY,22);
-        timeOff7.set(Calendar.MINUTE,58);
+        timeOff7.set(Calendar.HOUR_OF_DAY,10);
+        timeOff7.set(Calendar.MINUTE,55);
         timeOff7.set(Calendar.SECOND, 0);
         if(timeOff7.before(calendar))
             timeOff7.add(Calendar.DAY_OF_MONTH,1);
@@ -304,8 +316,8 @@ public class MainActivity extends AppCompatActivity {
         intent8.setAction("lecture 8");
         PendingIntent pendingIntent8 = PendingIntent.getBroadcast(this, 0, intent8, 0);
         Calendar timeOff8 = Calendar.getInstance();
-        timeOff8.set(Calendar.HOUR_OF_DAY, 22);
-        timeOff8.set(Calendar.MINUTE, 59);
+        timeOff8.set(Calendar.HOUR_OF_DAY,11);
+        timeOff8.set(Calendar.MINUTE, 10);
         timeOff8.set(Calendar.SECOND, 0);
         if(timeOff8.before(calendar))
             timeOff8.add(Calendar.DAY_OF_MONTH,1);
@@ -316,8 +328,8 @@ public class MainActivity extends AppCompatActivity {
         intent9.setAction("lecture 9");
         PendingIntent pendingIntent9 = PendingIntent.getBroadcast(this, 0, intent9, 0);
         Calendar timeOff9 = Calendar.getInstance();
-        timeOff9.set(Calendar.HOUR_OF_DAY, 23);
-        timeOff9.set(Calendar.MINUTE, 0);
+        timeOff9.set(Calendar.HOUR_OF_DAY,11);
+        timeOff9.set(Calendar.MINUTE,20);
         timeOff9.set(Calendar.SECOND, 0);
         if(timeOff9.before(calendar))
             timeOff9.add(Calendar.DAY_OF_MONTH,1);
@@ -329,8 +341,8 @@ public class MainActivity extends AppCompatActivity {
         intent10.setAction("lecture 10");
         PendingIntent pendingIntent10 = PendingIntent.getBroadcast(this, 0, intent10, 0);
         Calendar timeOff10 = Calendar.getInstance();
-        timeOff10.set(Calendar.HOUR_OF_DAY, 23);
-        timeOff10.set(Calendar.MINUTE, 4);
+        timeOff10.set(Calendar.HOUR_OF_DAY,11);
+        timeOff10.set(Calendar.MINUTE,30);
         timeOff10.set(Calendar.SECOND, 0);
         if(timeOff10.before(calendar))
             timeOff10.add(Calendar.DAY_OF_MONTH,1);
