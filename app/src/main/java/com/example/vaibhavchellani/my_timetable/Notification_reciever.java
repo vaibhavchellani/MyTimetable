@@ -95,7 +95,7 @@ public class Notification_reciever extends BroadcastReceiver{
         Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_WEEK);
         //todo change to day-1
-        return daysArray[day-1];
+        return daysArray[day-2];
 
     }
 }

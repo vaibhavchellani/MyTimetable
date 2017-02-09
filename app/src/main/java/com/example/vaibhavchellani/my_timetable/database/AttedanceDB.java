@@ -18,7 +18,7 @@ import com.example.vaibhavchellani.my_timetable.MainActivity;
 public class AttedanceDB extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "attendanceDB.db";
-    private static final int DATABASE_VERSION=10;
+    private static final int DATABASE_VERSION=11;
     ContentValues values=new ContentValues();
     // TODO change all column names to caps like lecture 1
     public static final String COLUMN_ID = "_id";
@@ -33,6 +33,8 @@ public class AttedanceDB extends SQLiteOpenHelper {
     public static final String COLUMN_LECTURE8="Four_thirty";
     public static final String COLUMN_LECTURE9="Four_forty";
     public static final String COLUMN_LECTURE10="Five_thirtyfive";
+
+    //todo add new columns like columnlecture1-ID AND ADD VALUES IN THEM
 
     public static final String COLUMN_SUBJECT="SUBJECTS";
     public static final String COLUMN_PRESENT_COUNTER="PRESENT";
