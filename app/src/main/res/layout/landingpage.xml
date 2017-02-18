@@ -11,7 +11,7 @@
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="WELCOME TO BETA VERSION" />
+        android:text="WELCOME" />
 
     <TextView
         android:text="if you have this you are special :P"
@@ -22,67 +22,32 @@
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:text="kidding :D"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/textView2"
-        android:layout_marginEnd="33dp"
-        android:id="@+id/textView4" />
-
-    <TextView
-        android:text="copyright-vaibhavchellani"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="7dp"
-        android:id="@+id/textView3"
-        android:layout_marginEnd="48dp"
-        android:layout_above="@+id/textView4"
-        android:layout_alignEnd="@+id/textView" />
-
     <Button
-        android:text="DO TIMETABLE STUFF"
+        android:text="VIew TImetable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="42dp"
         android:id="@+id/button_view_timetable"
         android:layout_below="@+id/textView2"
-        android:layout_alignEnd="@+id/textView4" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="36dp" />
 
     <Button
-        android:text="DO ATTENDANCE STUFF"
+        android:text="VIEW ATTENDANCE"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button_view_attendance"
-        android:layout_centerVertical="true"
-        android:layout_alignStart="@+id/textView2" />
-
-    <Button
-        android:text="CONTACT ME "
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button_contact"
-        android:layout_above="@+id/textView3"
-        android:layout_alignEnd="@+id/textView2"
-        android:layout_marginBottom="14dp" />
-
-    <Button
-        android:text="DELETE DATABASE"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button_contact"
-        android:layout_alignStart="@+id/textView"
-        android:layout_marginBottom="32dp"
-        android:id="@+id/delete_databse_button" />
+        android:layout_marginTop="51dp"
+        android:layout_below="@+id/button_view_timetable"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:text="Start Notifs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/delete_databse_button"
-        android:layout_alignEnd="@+id/textView"
-        android:layout_marginEnd="22dp"
-        android:id="@+id/startnotifs_button" />
+        android:id="@+id/startnotifs_button"
+        android:elevation="15dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="83dp" />
 
 </RelativeLayout>
