@@ -122,7 +122,7 @@ public class AttedanceDB extends SQLiteOpenHelper {
         db.execSQL(ROW1);
         db.close();
 
-        Log.d(" ", "addrow_check_class: Succesfully added day");
+
     }
 
     public String databaseToString(String Table_Name,String day){
