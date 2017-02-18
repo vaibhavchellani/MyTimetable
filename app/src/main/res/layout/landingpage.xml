@@ -76,4 +76,13 @@
         android:layout_marginBottom="32dp"
         android:id="@+id/delete_databse_button" />
 
+    <Button
+        android:text="Start Notifs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/delete_databse_button"
+        android:layout_alignEnd="@+id/textView"
+        android:layout_marginEnd="22dp"
+        android:id="@+id/startnotifs_button" />
+
 </RelativeLayout>
