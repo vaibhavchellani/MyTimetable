@@ -213,8 +213,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent1 = new Intent(this, Notification_reciever.class);
         intent1.setAction("lecture 1");
         PendingIntent pendingIntent1 = PendingIntent.getBroadcast(this,0,intent1,0);
-        timeOff1.set(Calendar.HOUR_OF_DAY, 19);
-        timeOff1.set(Calendar.MINUTE, 45);
+        timeOff1.set(Calendar.HOUR_OF_DAY,10);
+        timeOff1.set(Calendar.MINUTE, 5);
         timeOff1.set(Calendar.SECOND, 0);
         if(timeOff1.before(calendar))
             timeOff1.add(Calendar.DAY_OF_MONTH,1);
@@ -237,13 +237,22 @@ public class MainActivity extends AppCompatActivity {
         intent2.setAction("lecture 2");
         Calendar timeOff2 = Calendar.getInstance();
         PendingIntent pendingIntent2 = PendingIntent.getBroadcast(this, 0, intent2 , 0);
-        timeOff2.set(Calendar.HOUR_OF_DAY,20);
-        timeOff2.set(Calendar.MINUTE,15);
+        timeOff2.set(Calendar.HOUR_OF_DAY,11);
+        timeOff2.set(Calendar.MINUTE,5);
         timeOff2.set(Calendar.SECOND, 0);
         //todo edit the time here
         if(timeOff2.before(calendar))
             timeOff2.add(Calendar.DAY_OF_MONTH,1);
-        alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff2.getTimeInMillis(), pendingIntent2);
+        if (Build.VERSION.SDK_INT >= 23) {
+            // Wakes up the device in Doze Mode
+            alarm_manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timeOff2.getTimeInMillis(), pendingIntent2);
+        } else if (Build.VERSION.SDK_INT >= 19) {
+            // Wakes up the device in Idle Mode
+            alarm_manager.setExact(AlarmManager.RTC_WAKEUP, timeOff2.getTimeInMillis(), pendingIntent2);
+        } else {
+            // Old APIs
+            alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff2.getTimeInMillis(), pendingIntent2);
+        }
 
 
         //third intent for 3 lecture
@@ -251,62 +260,115 @@ public class MainActivity extends AppCompatActivity {
         intent3.setAction("lecture 3");
         PendingIntent pendingIntent3 = PendingIntent.getBroadcast(this, 0, intent3, 0);
         Calendar timeOff3 = Calendar.getInstance();
-        timeOff3.set(Calendar.HOUR_OF_DAY,20);
-        timeOff3.set(Calendar.MINUTE, 45);
+        timeOff3.set(Calendar.HOUR_OF_DAY,12);
+        timeOff3.set(Calendar.MINUTE, 0);
         timeOff3.set(Calendar.SECOND, 0);
         if(timeOff3.before(calendar))
             timeOff3.add(Calendar.DAY_OF_MONTH,1);
-        alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff3.getTimeInMillis(), pendingIntent3);
+        if (Build.VERSION.SDK_INT >= 23) {
+            // Wakes up the device in Doze Mode
+            alarm_manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timeOff3.getTimeInMillis(), pendingIntent3);
+        } else if (Build.VERSION.SDK_INT >= 19) {
+            // Wakes up the device in Idle Mode
+            alarm_manager.setExact(AlarmManager.RTC_WAKEUP, timeOff3.getTimeInMillis(), pendingIntent3);
+        } else {
+            // Old APIs
+            alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff3.getTimeInMillis(), pendingIntent3);
+        }
 
         //FOURTH INTENT
         Intent intent4 = new Intent(this, Notification_reciever.class);
         intent4.setAction("lecture 4");
         PendingIntent pendingIntent4 = PendingIntent.getBroadcast(this, 0, intent4, 0);
         Calendar timeOff4 = Calendar.getInstance();
-        timeOff4.set(Calendar.HOUR_OF_DAY,21);
-        timeOff4.set(Calendar.MINUTE, 15);
+        timeOff4.set(Calendar.HOUR_OF_DAY,12);
+        timeOff4.set(Calendar.MINUTE, 30);
         timeOff4.set(Calendar.SECOND, 0);
         if(timeOff4.before(calendar))
             timeOff4.add(Calendar.DAY_OF_MONTH,1);
-        alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff4.getTimeInMillis(), pendingIntent4);
+        if (Build.VERSION.SDK_INT >= 23) {
+            // Wakes up the device in Doze Mode
+            alarm_manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timeOff4.getTimeInMillis(), pendingIntent4);
+        } else if (Build.VERSION.SDK_INT >= 19) {
+            // Wakes up the device in Idle Mode
+            alarm_manager.setExact(AlarmManager.RTC_WAKEUP, timeOff4.getTimeInMillis(), pendingIntent1);
+        } else {
+            // Old APIs
+            alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff4.getTimeInMillis(), pendingIntent4);
+        }
 
         //FIFTH INTENT
         Intent intent5 = new Intent(this, Notification_reciever.class);
         intent5.setAction("lecture 5");
         PendingIntent pendingIntent5 = PendingIntent.getBroadcast(this, 0, intent5, 0);
         Calendar timeOff5 = Calendar.getInstance();
-        timeOff5.set(Calendar.HOUR_OF_DAY,21);
-        timeOff5.set(Calendar.MINUTE,45);
+        timeOff5.set(Calendar.HOUR_OF_DAY,13);
+        timeOff5.set(Calendar.MINUTE,25);
         timeOff5.set(Calendar.SECOND, 0);
         if(timeOff5.before(calendar))
             timeOff5.add(Calendar.DAY_OF_MONTH,1);
-        alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff5.getTimeInMillis(), pendingIntent5);
+        if (Build.VERSION.SDK_INT >= 23) {
+            // Wakes up the device in Doze Mode
+            alarm_manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timeOff5.getTimeInMillis(), pendingIntent5);
+        } else if (Build.VERSION.SDK_INT >= 19) {
+            // Wakes up the device in Idle Mode
+            alarm_manager.setExact(AlarmManager.RTC_WAKEUP, timeOff5.getTimeInMillis(), pendingIntent5);
+        } else {
+            // Old APIs
+            alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff5.getTimeInMillis(), pendingIntent5);
+        }
+        /*alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff5.getTimeInMillis(), pendingIntent5);*/
 
         //SIXTH INTENT
         Intent intent6 = new Intent(this, Notification_reciever.class);
         intent6.setAction("lecture 6");
         PendingIntent pendingIntent6 = PendingIntent.getBroadcast(this, 0, intent6, 0);
         Calendar timeOff6 = Calendar.getInstance();
-        timeOff6.set(Calendar.HOUR_OF_DAY,22);
-        timeOff6.set(Calendar.MINUTE,15);
+        timeOff6.set(Calendar.HOUR_OF_DAY,14);
+        timeOff6.set(Calendar.MINUTE,25);
         timeOff6.set(Calendar.SECOND,0);
         if(timeOff6.before(calendar))
             timeOff6.add(Calendar.DAY_OF_MONTH,1);
+        if (Build.VERSION.SDK_INT >= 23) {
+            // Wakes up the device in Doze Mode
+            alarm_manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timeOff6.getTimeInMillis(), pendingIntent6);
+        } else if (Build.VERSION.SDK_INT >= 19) {
+            // Wakes up the device in Idle Mode
+            alarm_manager.setExact(AlarmManager.RTC_WAKEUP, timeOff6.getTimeInMillis(), pendingIntent6);
+        } else {
+            // Old APIs
+            alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff6.getTimeInMillis(), pendingIntent6);
+        }
+        /*
+
         alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff6.getTimeInMillis(), pendingIntent6);
+*/
 
         //SEVENTH INTENT
         Intent intent7 = new Intent(this, Notification_reciever.class);
         intent7.setAction("lecture 7");
         PendingIntent pendingIntent7 = PendingIntent.getBroadcast(this, 0, intent7, 0);
         Calendar timeOff7 = Calendar.getInstance();
-        timeOff7.set(Calendar.HOUR_OF_DAY,22);
-        timeOff7.set(Calendar.MINUTE,45);
+        timeOff7.set(Calendar.HOUR_OF_DAY,15);
+        timeOff7.set(Calendar.MINUTE,5);
         timeOff7.set(Calendar.SECOND, 0);
         if(timeOff7.before(calendar))
             timeOff7.add(Calendar.DAY_OF_MONTH,1);
         //todo set
         // repeating
+        if (Build.VERSION.SDK_INT >= 23) {
+            // Wakes up the device in Doze Mode
+            alarm_manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timeOff7.getTimeInMillis(), pendingIntent7);
+        } else if (Build.VERSION.SDK_INT >= 19) {
+            // Wakes up the device in Idle Mode
+            alarm_manager.setExact(AlarmManager.RTC_WAKEUP, timeOff7.getTimeInMillis(), pendingIntent7);
+        } else {
+            // Old APIs
+            alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff7.getTimeInMillis(), pendingIntent7);
+        }
+/*
         alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff7.getTimeInMillis(), pendingIntent7);
+*/
 
 
         //EIGHTH INTENT
@@ -314,8 +376,8 @@ public class MainActivity extends AppCompatActivity {
         intent8.setAction("lecture 8");
         PendingIntent pendingIntent8 = PendingIntent.getBroadcast(this, 0, intent8, 0);
         Calendar timeOff8 = Calendar.getInstance();
-        timeOff8.set(Calendar.HOUR_OF_DAY,23);
-        timeOff8.set(Calendar.MINUTE, 15);
+        timeOff8.set(Calendar.HOUR_OF_DAY,16);
+        timeOff8.set(Calendar.MINUTE, 0);
         timeOff8.set(Calendar.SECOND, 0);
         if(timeOff8.before(calendar))
             timeOff8.add(Calendar.DAY_OF_MONTH,1);
@@ -326,26 +388,42 @@ public class MainActivity extends AppCompatActivity {
         intent9.setAction("lecture 9");
         PendingIntent pendingIntent9 = PendingIntent.getBroadcast(this, 0, intent9, 0);
         Calendar timeOff9 = Calendar.getInstance();
-        timeOff9.set(Calendar.HOUR_OF_DAY,23);
-        timeOff9.set(Calendar.MINUTE,45);
+        timeOff9.set(Calendar.HOUR_OF_DAY,16);
+        timeOff9.set(Calendar.MINUTE,35);
         timeOff9.set(Calendar.SECOND, 0);
         if(timeOff9.before(calendar))
             timeOff9.add(Calendar.DAY_OF_MONTH,1);
-        alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(), pendingIntent9);
-
+        if (Build.VERSION.SDK_INT >= 23) {
+            // Wakes up the device in Doze Mode
+            alarm_manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(), pendingIntent9);
+        } else if (Build.VERSION.SDK_INT >= 19) {
+            // Wakes up the device in Idle Mode
+            alarm_manager.setExact(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(), pendingIntent9);
+        } else {
+            // Old APIs
+            alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(), pendingIntent9);
+        }
 
         //TENTH INTENT
         Intent intent10 = new Intent(this, Notification_reciever.class);
         intent10.setAction("lecture 10");
         PendingIntent pendingIntent10 = PendingIntent.getBroadcast(this, 0, intent10, 0);
         Calendar timeOff10 = Calendar.getInstance();
-        timeOff10.set(Calendar.HOUR_OF_DAY,0);
+        timeOff10.set(Calendar.HOUR_OF_DAY,17);
         timeOff10.set(Calendar.MINUTE,0);
         timeOff10.set(Calendar.SECOND, 0);
         if(timeOff10.before(calendar))
             timeOff10.add(Calendar.DAY_OF_MONTH,1);
-        alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff10.getTimeInMillis(), pendingIntent10);
-
+        if (Build.VERSION.SDK_INT >= 23) {
+            // Wakes up the device in Doze Mode
+            alarm_manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timeOff10.getTimeInMillis(), pendingIntent10);
+        } else if (Build.VERSION.SDK_INT >= 19) {
+            // Wakes up the device in Idle Mode
+            alarm_manager.setExact(AlarmManager.RTC_WAKEUP, timeOff10.getTimeInMillis(), pendingIntent10);
+        } else {
+            // Old APIs
+            alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff10.getTimeInMillis(), pendingIntent10);
+        }
     }
 
 
