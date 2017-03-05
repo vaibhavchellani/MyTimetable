@@ -19,7 +19,8 @@
         <activity android:name=".today_timetable" />
         <activity android:name=".showattendance" />
         <activity android:name=".alter_attendance" />
-        <activity android:name=".makenotif" /><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+        <activity android:name=".makenotif" />
+        <activity android:name=".personalise" /><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
         <receiver android:name="Notification_reciever"/>
         <meta-data

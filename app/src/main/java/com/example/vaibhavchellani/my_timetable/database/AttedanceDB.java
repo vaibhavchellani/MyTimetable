@@ -44,7 +44,7 @@ public class AttedanceDB extends SQLiteOpenHelper {
 
     public static final String TABLE_CHECK_CLASS = "check_class";
     public static final String TABLE_ATTENDANCE = "attendance";
-
+    public static final String IT_EVE_2[]={"10:30","11:25","12:30","12:50","1:45","2:40","3:35","4:30","5:35"};
     public AttedanceDB(Context context){
 
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
@@ -273,7 +273,7 @@ public class AttedanceDB extends SQLiteOpenHelper {
     public String getNextClass(String Column_name,String day){
         if(day.equalsIgnoreCase("SATURDAY")||day.equalsIgnoreCase("SUNDAY"))
         {
-            return "ENJOY YOUR HOLIDAY BITCHES";
+            return "No Class Today";
         }
         SQLiteDatabase db = getWritableDatabase();
         String query = "select * from "+TABLE_CHECK_CLASS+ " where " + COLUMN_DAY + "= '"+day+"' " ;// why not leave out the WHERE  clause?

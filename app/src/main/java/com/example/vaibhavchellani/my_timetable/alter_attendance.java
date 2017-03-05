@@ -97,17 +97,13 @@ public class alter_attendance extends AppCompatActivity  {
     absent =db.getAttendanceInInt(db.COLUMN_ABSENT_COUNTER,extras.getString("subject"));
 
     if(present!=0 || absent !=0) {
-        Toast.makeText(this, "inside if ", Toast.LENGTH_SHORT).show();
         int total=present+absent;
         percentage = (present*100)/total;
-
         percentage_view.setText(Float.toString(percentage)+"%");
-
         if (percentage < 30)
             below_percentage.setText("Oh No Dear!, koi nhi external faad dena !");
-        if (percentage < 50 && percentage>30) {
+        if (percentage < 50 && percentage>30)
             below_percentage.setText("good going ,target for 70 then youre set !");
-        }
         if (percentage < 70 && percentage>50)
             below_percentage.setText("wohoo you rock dude ,relax at home and please mass bunk now");
         if (percentage <= 100 && percentage > 70)

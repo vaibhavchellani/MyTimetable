@@ -2,7 +2,9 @@ package com.example.vaibhavchellani.my_timetable;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Build;
@@ -28,7 +30,14 @@ import java.util.GregorianCalendar;
 
 
 public class MainActivity extends AppCompatActivity {
+
     private Spinner spinner_year,spinner_branch,spinner_shift;
+
+
+/*
+    SharedPreferences sharedPreferences=this.getSharedPreferences("data", Context.MODE_PRIVATE);
+*/
+
 
     private TextView textview;
 
@@ -42,7 +51,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.landingpage);
         db = new AttedanceDB(this);
         db.addrow_check_class();
-        db.make_attendance_table();
+        db.make_attendance_table();/*
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.putString("username","");*/
 
 
         findViewById(R.id.startnotifs_button).setOnClickListener(new View.OnClickListener() {
@@ -81,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
     }
     
     public void deleteDatabase(View view) {
-        Toast.makeText(this, "we are inside delete", Toast.LENGTH_SHORT).show();
 
         db.deleteTable(AttedanceDB.TABLE_CHECK_CLASS);
         String dbstring = db.getTableAsString(AttedanceDB.TABLE_CHECK_CLASS);
@@ -90,9 +100,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void viewDatabase(View view) {
+
         Toast.makeText(this, "we are inside view", Toast.LENGTH_SHORT).show();
         textview=(TextView)findViewById(R.id.newText);
-
         String dbstring = db.getTableAsString(AttedanceDB.TABLE_ATTENDANCE);
         textview.setText(dbstring);
         Toast.makeText(this, "no of coumns are " + db.numberOfColumns(AttedanceDB.TABLE_CHECK_CLASS), Toast.LENGTH_LONG).show();
@@ -119,6 +129,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.resetDatabse:
                 db.deleteTable(db.TABLE_ATTENDANCE);
                 return true;
+            case R.id.personalize:
+                Intent i=new Intent(this,personalise.class);
+                startActivity(i);
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -135,11 +148,14 @@ public class MainActivity extends AppCompatActivity {
         intent1.setAction("lecture 1");
         PendingIntent pendingIntent1 = PendingIntent.getBroadcast(this,0,intent1,0);
         timeOff1.set(Calendar.HOUR_OF_DAY,10);
-        timeOff1.set(Calendar.MINUTE, 5);
+        timeOff1.set(Calendar.MINUTE, 10);
         timeOff1.set(Calendar.SECOND, 0);
+        //todo change this so that notification doesnt display on other day
+        //if(timeOff1.before(calendar)==false)
+            //below code
+
         if(timeOff1.before(calendar))
             timeOff1.add(Calendar.DAY_OF_MONTH,1);
-        //todo to test this on xiomi
         if (Build.VERSION.SDK_INT >= 23) {
         // Wakes up the device in Doze Mode
             alarm_manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timeOff1.getTimeInMillis(), pendingIntent1);
@@ -150,7 +166,6 @@ public class MainActivity extends AppCompatActivity {
         // Old APIs
             alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff1.getTimeInMillis(), pendingIntent1);
         }
-        //alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff1.getTimeInMillis(), pendingIntent1);
 
 
         //second intent for second lecture
