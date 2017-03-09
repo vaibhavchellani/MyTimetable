@@ -151,20 +151,17 @@ public class MainActivity extends AppCompatActivity {
         timeOff1.set(Calendar.MINUTE, 10);
         timeOff1.set(Calendar.SECOND, 0);
         //todo change this so that notification doesnt display on other day
-        //if(timeOff1.before(calendar)==false)
-            //below code
-
-        if(timeOff1.before(calendar))
-            timeOff1.add(Calendar.DAY_OF_MONTH,1);
-        if (Build.VERSION.SDK_INT >= 23) {
-        // Wakes up the device in Doze Mode
-            alarm_manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timeOff1.getTimeInMillis(), pendingIntent1);
-        } else if (Build.VERSION.SDK_INT >= 19) {
-        // Wakes up the device in Idle Mode
-            alarm_manager.setExact(AlarmManager.RTC_WAKEUP, timeOff1.getTimeInMillis(), pendingIntent1);
-        } else {
-        // Old APIs
-            alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff1.getTimeInMillis(), pendingIntent1);
+        if(timeOff1.before(calendar)==false) {
+            if (Build.VERSION.SDK_INT >= 23) {
+                // Wakes up the device in Doze Mode
+                alarm_manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timeOff1.getTimeInMillis(), pendingIntent1);
+            } else if (Build.VERSION.SDK_INT >= 19) {
+                // Wakes up the device in Idle Mode
+                alarm_manager.setExact(AlarmManager.RTC_WAKEUP, timeOff1.getTimeInMillis(), pendingIntent1);
+            } else {
+                // Old APIs
+                alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff1.getTimeInMillis(), pendingIntent1);
+            }
         }
 
 
@@ -177,8 +174,7 @@ public class MainActivity extends AppCompatActivity {
         timeOff2.set(Calendar.MINUTE,5);
         timeOff2.set(Calendar.SECOND, 0);
         //todo edit the time here
-        if(timeOff2.before(calendar))
-            timeOff2.add(Calendar.DAY_OF_MONTH,1);
+        if(timeOff2.before(calendar)==false) {
         if (Build.VERSION.SDK_INT >= 23) {
             // Wakes up the device in Doze Mode
             alarm_manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timeOff2.getTimeInMillis(), pendingIntent2);
@@ -188,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             // Old APIs
             alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff2.getTimeInMillis(), pendingIntent2);
+        }
         }
 
 
@@ -199,17 +196,17 @@ public class MainActivity extends AppCompatActivity {
         timeOff3.set(Calendar.HOUR_OF_DAY,12);
         timeOff3.set(Calendar.MINUTE, 0);
         timeOff3.set(Calendar.SECOND, 0);
-        if(timeOff3.before(calendar))
-            timeOff3.add(Calendar.DAY_OF_MONTH,1);
-        if (Build.VERSION.SDK_INT >= 23) {
-            // Wakes up the device in Doze Mode
-            alarm_manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timeOff3.getTimeInMillis(), pendingIntent3);
-        } else if (Build.VERSION.SDK_INT >= 19) {
-            // Wakes up the device in Idle Mode
-            alarm_manager.setExact(AlarmManager.RTC_WAKEUP, timeOff3.getTimeInMillis(), pendingIntent3);
-        } else {
-            // Old APIs
-            alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff3.getTimeInMillis(), pendingIntent3);
+        if(timeOff3.before(calendar)==false) {
+            if (Build.VERSION.SDK_INT >= 23) {
+                // Wakes up the device in Doze Mode
+                alarm_manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timeOff3.getTimeInMillis(), pendingIntent3);
+            } else if (Build.VERSION.SDK_INT >= 19) {
+                // Wakes up the device in Idle Mode
+                alarm_manager.setExact(AlarmManager.RTC_WAKEUP, timeOff3.getTimeInMillis(), pendingIntent3);
+            } else {
+                // Old APIs
+                alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff3.getTimeInMillis(), pendingIntent3);
+            }
         }
 
         //FOURTH INTENT
@@ -220,17 +217,17 @@ public class MainActivity extends AppCompatActivity {
         timeOff4.set(Calendar.HOUR_OF_DAY,12);
         timeOff4.set(Calendar.MINUTE, 30);
         timeOff4.set(Calendar.SECOND, 0);
-        if(timeOff4.before(calendar))
-            timeOff4.add(Calendar.DAY_OF_MONTH,1);
-        if (Build.VERSION.SDK_INT >= 23) {
-            // Wakes up the device in Doze Mode
-            alarm_manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timeOff4.getTimeInMillis(), pendingIntent4);
-        } else if (Build.VERSION.SDK_INT >= 19) {
-            // Wakes up the device in Idle Mode
-            alarm_manager.setExact(AlarmManager.RTC_WAKEUP, timeOff4.getTimeInMillis(), pendingIntent1);
-        } else {
-            // Old APIs
-            alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff4.getTimeInMillis(), pendingIntent4);
+        if(timeOff4.before(calendar)==false) {
+            if (Build.VERSION.SDK_INT >= 23) {
+                // Wakes up the device in Doze Mode
+                alarm_manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timeOff4.getTimeInMillis(), pendingIntent4);
+            } else if (Build.VERSION.SDK_INT >= 19) {
+                // Wakes up the device in Idle Mode
+                alarm_manager.setExact(AlarmManager.RTC_WAKEUP, timeOff4.getTimeInMillis(), pendingIntent1);
+            } else {
+                // Old APIs
+                alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff4.getTimeInMillis(), pendingIntent4);
+            }
         }
 
         //FIFTH INTENT
@@ -241,20 +238,18 @@ public class MainActivity extends AppCompatActivity {
         timeOff5.set(Calendar.HOUR_OF_DAY,13);
         timeOff5.set(Calendar.MINUTE,25);
         timeOff5.set(Calendar.SECOND, 0);
-        if(timeOff5.before(calendar))
-            timeOff5.add(Calendar.DAY_OF_MONTH,1);
-        if (Build.VERSION.SDK_INT >= 23) {
-            // Wakes up the device in Doze Mode
-            alarm_manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timeOff5.getTimeInMillis(), pendingIntent5);
-        } else if (Build.VERSION.SDK_INT >= 19) {
-            // Wakes up the device in Idle Mode
-            alarm_manager.setExact(AlarmManager.RTC_WAKEUP, timeOff5.getTimeInMillis(), pendingIntent5);
-        } else {
-            // Old APIs
-            alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff5.getTimeInMillis(), pendingIntent5);
+        if(timeOff5.before(calendar)==false) {
+            if (Build.VERSION.SDK_INT >= 23) {
+                // Wakes up the device in Doze Mode
+                alarm_manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timeOff5.getTimeInMillis(), pendingIntent5);
+            } else if (Build.VERSION.SDK_INT >= 19) {
+                // Wakes up the device in Idle Mode
+                alarm_manager.setExact(AlarmManager.RTC_WAKEUP, timeOff5.getTimeInMillis(), pendingIntent5);
+            } else {
+                // Old APIs
+                alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff5.getTimeInMillis(), pendingIntent5);
+            }
         }
-        /*alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff5.getTimeInMillis(), pendingIntent5);*/
-
         //SIXTH INTENT
         Intent intent6 = new Intent(this, Notification_reciever.class);
         intent6.setAction("lecture 6");
@@ -263,23 +258,18 @@ public class MainActivity extends AppCompatActivity {
         timeOff6.set(Calendar.HOUR_OF_DAY,14);
         timeOff6.set(Calendar.MINUTE,25);
         timeOff6.set(Calendar.SECOND,0);
-        if(timeOff6.before(calendar))
-            timeOff6.add(Calendar.DAY_OF_MONTH,1);
-        if (Build.VERSION.SDK_INT >= 23) {
-            // Wakes up the device in Doze Mode
-            alarm_manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timeOff6.getTimeInMillis(), pendingIntent6);
-        } else if (Build.VERSION.SDK_INT >= 19) {
-            // Wakes up the device in Idle Mode
-            alarm_manager.setExact(AlarmManager.RTC_WAKEUP, timeOff6.getTimeInMillis(), pendingIntent6);
-        } else {
-            // Old APIs
-            alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff6.getTimeInMillis(), pendingIntent6);
+        if(timeOff6.before(calendar)==false) {
+            if (Build.VERSION.SDK_INT >= 23) {
+                // Wakes up the device in Doze Mode
+                alarm_manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timeOff6.getTimeInMillis(), pendingIntent6);
+            } else if (Build.VERSION.SDK_INT >= 19) {
+                // Wakes up the device in Idle Mode
+                alarm_manager.setExact(AlarmManager.RTC_WAKEUP, timeOff6.getTimeInMillis(), pendingIntent6);
+            } else {
+                // Old APIs
+                alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff6.getTimeInMillis(), pendingIntent6);
+            }
         }
-        /*
-
-        alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff6.getTimeInMillis(), pendingIntent6);
-*/
-
         //SEVENTH INTENT
         Intent intent7 = new Intent(this, Notification_reciever.class);
         intent7.setAction("lecture 7");
@@ -288,24 +278,18 @@ public class MainActivity extends AppCompatActivity {
         timeOff7.set(Calendar.HOUR_OF_DAY,15);
         timeOff7.set(Calendar.MINUTE,5);
         timeOff7.set(Calendar.SECOND, 0);
-        if(timeOff7.before(calendar))
-            timeOff7.add(Calendar.DAY_OF_MONTH,1);
-        //todo set
-        // repeating
-        if (Build.VERSION.SDK_INT >= 23) {
-            // Wakes up the device in Doze Mode
-            alarm_manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timeOff7.getTimeInMillis(), pendingIntent7);
-        } else if (Build.VERSION.SDK_INT >= 19) {
-            // Wakes up the device in Idle Mode
-            alarm_manager.setExact(AlarmManager.RTC_WAKEUP, timeOff7.getTimeInMillis(), pendingIntent7);
-        } else {
-            // Old APIs
-            alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff7.getTimeInMillis(), pendingIntent7);
+        if(timeOff7.before(calendar)==false) {
+            if (Build.VERSION.SDK_INT >= 23) {
+                // Wakes up the device in Doze Mode
+                alarm_manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timeOff7.getTimeInMillis(), pendingIntent7);
+            } else if (Build.VERSION.SDK_INT >= 19) {
+                // Wakes up the device in Idle Mode
+                alarm_manager.setExact(AlarmManager.RTC_WAKEUP, timeOff7.getTimeInMillis(), pendingIntent7);
+            } else {
+                // Old APIs
+                alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff7.getTimeInMillis(), pendingIntent7);
+            }
         }
-/*
-        alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff7.getTimeInMillis(), pendingIntent7);
-*/
-
 
         //EIGHTH INTENT
         Intent intent8 = new Intent(this, Notification_reciever.class);
@@ -315,9 +299,18 @@ public class MainActivity extends AppCompatActivity {
         timeOff8.set(Calendar.HOUR_OF_DAY,16);
         timeOff8.set(Calendar.MINUTE, 0);
         timeOff8.set(Calendar.SECOND, 0);
-        if(timeOff8.before(calendar))
-            timeOff8.add(Calendar.DAY_OF_MONTH,1);
-        alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff8.getTimeInMillis(), pendingIntent8);
+        if(timeOff8.before(calendar)==false) {
+            if (Build.VERSION.SDK_INT >= 23) {
+                // Wakes up the device in Doze Mode
+                alarm_manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timeOff8.getTimeInMillis(), pendingIntent8);
+            } else if (Build.VERSION.SDK_INT >= 19) {
+                // Wakes up the device in Idle Mode
+                alarm_manager.setExact(AlarmManager.RTC_WAKEUP, timeOff8.getTimeInMillis(), pendingIntent8);
+            } else {
+                // Old APIs
+                alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff8.getTimeInMillis(), pendingIntent8);
+            }
+        }
 
         //NINTH INTENT
         Intent intent9 = new Intent(this, Notification_reciever.class);
@@ -327,17 +320,18 @@ public class MainActivity extends AppCompatActivity {
         timeOff9.set(Calendar.HOUR_OF_DAY,16);
         timeOff9.set(Calendar.MINUTE,35);
         timeOff9.set(Calendar.SECOND, 0);
-        if(timeOff9.before(calendar))
-            timeOff9.add(Calendar.DAY_OF_MONTH,1);
-        if (Build.VERSION.SDK_INT >= 23) {
-            // Wakes up the device in Doze Mode
-            alarm_manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(), pendingIntent9);
-        } else if (Build.VERSION.SDK_INT >= 19) {
-            // Wakes up the device in Idle Mode
-            alarm_manager.setExact(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(), pendingIntent9);
-        } else {
-            // Old APIs
-            alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(), pendingIntent9);
+        if(timeOff9.before(calendar)==false) {
+
+            if (Build.VERSION.SDK_INT >= 23) {
+                // Wakes up the device in Doze Mode
+                alarm_manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(), pendingIntent9);
+            } else if (Build.VERSION.SDK_INT >= 19) {
+                // Wakes up the device in Idle Mode
+                alarm_manager.setExact(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(), pendingIntent9);
+            } else {
+                // Old APIs
+                alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(), pendingIntent9);
+            }
         }
 
         //TENTH INTENT
@@ -348,17 +342,17 @@ public class MainActivity extends AppCompatActivity {
         timeOff10.set(Calendar.HOUR_OF_DAY,17);
         timeOff10.set(Calendar.MINUTE,0);
         timeOff10.set(Calendar.SECOND, 0);
-        if(timeOff10.before(calendar))
-            timeOff10.add(Calendar.DAY_OF_MONTH,1);
-        if (Build.VERSION.SDK_INT >= 23) {
-            // Wakes up the device in Doze Mode
-            alarm_manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timeOff10.getTimeInMillis(), pendingIntent10);
-        } else if (Build.VERSION.SDK_INT >= 19) {
-            // Wakes up the device in Idle Mode
-            alarm_manager.setExact(AlarmManager.RTC_WAKEUP, timeOff10.getTimeInMillis(), pendingIntent10);
-        } else {
-            // Old APIs
-            alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff10.getTimeInMillis(), pendingIntent10);
+        if(timeOff10.before(calendar)==false) {
+            if (Build.VERSION.SDK_INT >= 23) {
+                // Wakes up the device in Doze Mode
+                alarm_manager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timeOff10.getTimeInMillis(), pendingIntent10);
+            } else if (Build.VERSION.SDK_INT >= 19) {
+                // Wakes up the device in Idle Mode
+                alarm_manager.setExact(AlarmManager.RTC_WAKEUP, timeOff10.getTimeInMillis(), pendingIntent10);
+            } else {
+                // Old APIs
+                alarm_manager.set(AlarmManager.RTC_WAKEUP, timeOff10.getTimeInMillis(), pendingIntent10);
+            }
         }
     }
 
