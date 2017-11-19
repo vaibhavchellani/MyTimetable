@@ -5,18 +5,14 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.app.NotificationCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -25,7 +21,6 @@ import android.widget.Toast;
 import com.example.vaibhavchellani.my_timetable.database.AttedanceDB;
 
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 
 
@@ -51,9 +46,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.landingpage);
         db = new AttedanceDB(this);
         db.addrow_check_class();
-        db.make_attendance_table();/*
-        SharedPreferences.Editor editor=sharedPreferences.edit();
-        editor.putString("username","");*/
+        db.make_attendance_table();
+        SharedPreferences sharedPreferences=getSharedPreferences("data", Context.MODE_PRIVATE);
+        String username=sharedPreferences.getString("username",null);
+        TextView user=(TextView)findViewById(R.id.textView);
+        user.setText("Welcome "+username);
 
 
         findViewById(R.id.startnotifs_button).setOnClickListener(new View.OnClickListener() {

@@ -16,16 +16,16 @@
         android:id="@+id/usename_textview" />
 
     <EditText
+        android:id="@+id/username_edittext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Enter Nickname"
-        android:ems="10"
-        android:layout_marginTop="13dp"
-        android:id="@+id/username_edittext"
-        android:layout_below="@+id/usename_textview"
         android:layout_alignLeft="@+id/usename_textview"
-        android:layout_alignStart="@+id/usename_textview" />
+        android:layout_alignStart="@+id/usename_textview"
+        android:layout_below="@+id/usename_textview"
+        android:layout_marginTop="13dp"
+        android:ems="10"
+        android:hint="Enter Nickname"
+        android:inputType="textPersonName" />
 
     <Button
         android:text="SAVE"
