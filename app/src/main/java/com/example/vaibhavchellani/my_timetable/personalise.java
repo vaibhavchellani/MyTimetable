@@ -13,7 +13,7 @@ import android.widget.EditText;
  */
 
 public class personalise extends AppCompatActivity {
-    private EditText usernameEditText;
+
     private Button saveButton;
 
 
@@ -24,13 +24,17 @@ public class personalise extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.personalise);
         SharedPreferences sharedPreferences=getSharedPreferences("data", Context.MODE_PRIVATE);
+        String username=sharedPreferences.getString("username",null);
+       final EditText usernameEditText =(EditText)findViewById(R.id.username_edittext);
+            usernameEditText.setText(username);
         final SharedPreferences.Editor editor=sharedPreferences.edit();
-        usernameEditText= (EditText)findViewById(R.id.username_edittext);
+
         findViewById(R.id.save_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 editor.putString("username",usernameEditText.getText().toString());
                 editor.commit();
+                finish();
             }
         });
 
